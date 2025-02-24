@@ -1,0 +1,13 @@
+.rangeContainer {
+  width: 100%;
+}
+
+.thumb {
+  height: 20px;
+  width: 20px;
+  border-radius: 50%;
+  background-color: var(--white);
+  border: 2.5px solid var(--platinum);
+  cursor: pointer;
+  outline: none;
+}

@@ -1,0 +1,441 @@
+.createCampaign_container {
+  display: flex;
+  flex-direction: column;
+  gap: 50px;
+  padding: 114px 80px 200px 80px;
+  background-color: var(--frostWhite);
+  /* height: calc(100vh - 118px); */
+  overflow: scroll;
+}
+
+.createCampaign_subContainer {
+  display: flex;
+  gap: 36px;
+  justify-content: space-between;
+}
+
+.createCampaign_titleAndSubTitle {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.createCampaign_title {
+  font-size: 55px;
+  font-weight: 500;
+  line-height: 67.15px;
+  text-align: left;
+  color: var(--black);
+}
+
+.createCampaign_subTitle {
+  font-size: 22px;
+  font-weight: 400;
+  line-height: 26.25px;
+  text-align: left;
+  color: var(--ashGray);
+}
+
+.createCampaign_accordionSection {
+  /* max-width: 850px; */
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.createCampaign_inputContainer {
+  width: 100%;
+}
+.createCampaign_inputLabel {
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 22px;
+  text-align: left;
+  color: var(--charcoal);
+}
+.createCampaign_inputLabel::placeholder {
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 21.47px;
+  letter-spacing: 0%;
+  color: var(--lightGray);
+}
+.campaign_objectiveAccordion,
+.campaign_briefAccordion {
+  padding: 11px 42px 32px 42px;
+}
+
+.createCampaign_addTikTokSoundAndNewSound {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.createCampaign_textAreaAndPasteLink {
+  display: flex;
+  flex-direction: column;
+  gap: 38px;
+}
+
+.createCampaign_soundPreviewAndNewSound {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.createCampaign_soundPreview {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  padding: 8px 20px 10px 8px;
+  background-color: var(--white);
+  border: 2px solid var(--platinum);
+  border-radius: 15px;
+}
+
+.createCampaign_audioDetails {
+  display: flex;
+  gap: 16px;
+}
+
+.createCampaign_audioPreviewIcon {
+  width: 100px;
+  height: 100px;
+}
+
+.createCampaign_audioDescDetails {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  justify-content: space-between;
+}
+
+.createCampaign_audioTrackTitleAndSubTitle {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.createCampaign_audioTrackTitle {
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 22px;
+  text-align: left;
+  color: var(--black);
+}
+
+.createCampaign_audioTrackSubTitle,
+.createCampaign_audioTrackDuration,
+.createCampaign_audioTrackViewers {
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 19.09px;
+  text-align: left;
+  color: var(--smoke);
+}
+
+.createCampaign_audioViewsDetails {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  align-items: flex-end;
+  justify-content: space-between;
+}
+
+.createCampaign_viewInTikTok {
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 19.09px;
+  text-align: left;
+  color: var(--blue);
+  border-bottom: 1px solid var(--blue);
+  cursor: pointer;
+}
+
+.createCampaign_uploadAudioFileAndPreview {
+  margin-top: 36px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.createCampaign_uploadAudio {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.createCampaign_uploadLabel {
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 22px;
+  text-align: left;
+  color: var(--charcoal);
+}
+
+.createCampaign_uploadDropBox,
+.createCampaign_uploadDropBoxActive {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 24px;
+  border: 2px dashed var(--silverGray);
+  border-radius: 15px;
+}
+
+.createCampaign_uploadDropBoxActive {
+  border: 2px dashed var(--blue);
+}
+
+.createCampaign_uploadedAudioPreview {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 22px;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid var(--silverGray);
+  background-color: var(--white);
+  border-radius: 15px;
+}
+
+.createCampaign_documentGrayIcon {
+  width: 30px;
+  height: 40px;
+}
+
+.createCampaign_uploadPreviewLabel {
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 19.09px;
+  text-align: center;
+  color: var(--smoke);
+}
+
+.createCampaign_videoUploadAndPreview {
+  margin-top: 37px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.createCampaign_videoUploadPreview {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  gap: 12px;
+}
+
+.createCampaign_videoPreviewImg {
+  width: 112px;
+  height: 207px;
+  border: 2px solid var(--platinum);
+  border-radius: 15px;
+}
+
+.createCampaign_videoPreviewBox {
+  min-width: 112px;
+  width: 112px;
+  min-height: 207px;
+  height: 207px;
+}
+
+.createCampaign_videoPreview {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.createCampaign_addNewVideoImg {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 112px;
+  height: 207px;
+  border: 2px solid var(--platinum);
+  border-radius: 15px;
+}
+
+.createCampaign_addNewVideoIcon {
+  width: 20px;
+  height: 20px;
+}
+
+.createCampaign_ageRange {
+  margin-top: 37px;
+  margin-bottom: 52px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  justify-content: space-between;
+}
+
+.ageRangeHeading {
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 21.47px;
+  text-align: left;
+  text-underline-position: from-font;
+  text-decoration-skip-ink: none;
+  color: var(--charcoal);
+}
+
+.createCampaign_ageRangeValuesAndSeparator {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.createCampaign_minRange,
+.createCampaign_maxRange {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 42px;
+  height: 32px;
+  border: 2px solid var(--platinum);
+  border-radius: 10px;
+
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 22px;
+  text-align: left;
+  color: var(--charcoal);
+}
+
+.createCampaign_separator {
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 21.47px;
+  text-align: left;
+  color: var(--charcoal);
+}
+
+.createCampaign_genderStatistics {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+  align-items: flex-start;
+  margin-top: 56px;
+  margin-bottom: 34px;
+}
+
+.createCampaign_genderLabelAndPercentage {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+
+.createCampaign_genderLabel {
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 22px;
+  text-align: left;
+  align-self: flex-start;
+  color: var(--charcoal);
+}
+
+.createCampaign_genderPercentage {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.createCampaign_genderIndicatorsAndRanger {
+  width: 100%;
+  align-items: center;
+  display: flex;
+  gap: 60px;
+}
+
+.createCampaign_genderIndicator {
+  width: 12px;
+  height: 12px;
+}
+
+.createCampaign_genderIndicators {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.createCampaign_percentageLabel {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 62px;
+  height: 38px;
+  background-color: var(--white);
+  border-radius: 10px;
+  border: 2px solid var(--platinum);
+  text-align: center;
+
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 21.47px;
+  color: var(--charcoal);
+}
+
+.createCampaign_gender {
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 21.47px;
+  color: var(--charcoal);
+}
+
+.createCampaign_totalBudget {
+  width: 280px;
+}
+
+.createCampaign_calender {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  margin-top: 43px;
+  margin-bottom: 34px;
+}
+
+.createCampaign_toText {
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 22px;
+  color: var(--charcoal);
+}
+
+.createCampaign_poInfoAndInputs {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.createCampaign_label {
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 21.47px;
+  text-align: left;
+  color: var(--charcoal);
+}
+
+.createCampaign_poInfoInputs {
+  display: flex;
+  gap: 14px;
+  align-items: center;
+}
+
+.createCampaign_audioViewDetails {
+  padding: 11px 42px 42px 42px;
+}
+.createCampaign_breifModal {
+  position: fixed;
+  width: 75%;
+  height: 100%;
+  max-height: calc(100vh - 120px);
+  top: 60px;
+  left: 50%;
+  transform: translateX(-50%);
+  overflow: hidden;
+  overflow-y: scroll;
+  background-color: none;
+}

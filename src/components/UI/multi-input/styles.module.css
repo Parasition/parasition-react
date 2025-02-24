@@ -1,0 +1,79 @@
+.multiValueInput_container {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.multiValueInput_label {
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 22px;
+  text-align: left;
+  color: var(--charcoal);
+}
+
+.multiValueInput_subContainer {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  border: 2px solid rgba(221, 221, 221, 1);
+  border-radius: 15px;
+  background-color: rgba(255, 255, 255, 1);
+}
+
+.multiValueInput_tagWrapper {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  width: 100%;
+  padding: 6px;
+}
+
+.multiValueInput_tagItem {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  padding: 12px;
+  border-radius: 10px;
+  background-color: var(--ivory);
+}
+
+.multiValueInput_tagValue {
+  max-width: 400px;
+  width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 21.47px;
+  text-align: left;
+  color: var(--blue);
+}
+
+.multiValueInput_closeGrayIcon {
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+}
+
+.multiValueInput_closeGrayFit {
+  object-fit: contain;
+}
+
+.inputField {
+  min-height: 58px;
+  padding: 6px;
+  border: none;
+  flex: 1;
+  font-size: 14px;
+  outline: none;
+  background-color: transparent;
+}
+
+.inputField::placeholder {
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 21.47px;
+  text-align: left;
+  color: var(--smoke);
+}

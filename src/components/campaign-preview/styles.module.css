@@ -1,0 +1,114 @@
+.campaignPreview_previewSection {
+  max-width: 560px;
+  width: 100%;
+  height: fit-content;
+  border: 4px solid rgba(230, 230, 230, 1);
+  background-color: rgba(255, 255, 255, 1);
+  border-radius: 15px;
+}
+
+.campaignPreview_previewHeading {
+  font-size: 23px;
+  font-weight: 500;
+  line-height: 28.08px;
+  text-align: left;
+  color: var(--black);
+  padding: 24px 16px 16px 30px;
+}
+
+.campaignPreview_campaignDetails {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  padding: 0px 16px 50px 30px;
+}
+
+.campaignPreview_campaignNameHeading {
+  font-size: 32px;
+  font-weight: 700;
+  line-height: 39.07px;
+  color: var(--black);
+}
+
+.campaignPreview_campaignDescription {
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 22px;
+  text-align: left;
+  color: var(--charcoal);
+}
+
+.campaignPreview_campaignStatistics {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.campaign_listItem {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+}
+
+.campaignPreview_listItemIcon {
+  min-width: 24px;
+  min-height: 24px;
+}
+
+.campaignPreview_listItemIconFit {
+  object-fit: contain;
+}
+
+.campaignPreview_listItemLabelAndCount {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.campaignPreview_listItemLabel {
+  font-size: 23px;
+  font-weight: 500;
+  line-height: 28px;
+  text-align: left;
+  white-space: nowrap;
+}
+
+.campaignPreview_listItemCount {
+  font-size: 23px;
+  font-weight: 500;
+  line-height: 28.08px;
+  text-align: left;
+  color: var(--emeraldGreen);
+  white-space: nowrap;
+}
+
+.campaignPreview_budgetDetails {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.campaignPreview_budgetListItem {
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 22px;
+  text-align: left;
+}
+
+.campaignPreview_budgetListDateAndBudget {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.campaignPreview_budgetListItemDesc {
+  font-size: 23px;
+  font-weight: 500;
+  line-height: 28.08px;
+  text-align: left;
+  color: var(--charcoal);
+}
+
+.campaignPreview_launchCampaignBtn {
+  width: fit-content;
+}

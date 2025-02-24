@@ -1,0 +1,64 @@
+.inputWrapperStyle {
+  width: fit-content;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  position: relative;
+}
+.inputLabelStyle {
+  color: var(--charcoal);
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 21.47px;
+  text-align: left;
+  text-underline-position: from-font;
+  text-decoration-skip-ink: none;
+}
+.inputStyle {
+  width: 100%;
+  height: 44px;
+  background-color: var(--white);
+  border: 2px solid var(--platinum);
+  border-radius: 8px;
+  padding: 12px;
+  color: var(--black);
+  font-family: 'HelveticaNeueMedium';
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 21.98px;
+  text-align: left;
+  text-underline-position: from-font;
+  text-decoration-skip-ink: none;
+}
+
+.inputStyle::placeholder {
+  color: var(--smoke);
+}
+.inputStyle:active,
+.inputStyle:focus {
+  outline: none;
+}
+.inputErrorStyle {
+  color: var(--tomato);
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 16px;
+}
+.leftIconStyle {
+  position: absolute;
+  top: 50%;
+  left: 20px;
+  transform: translate(-50%, -50%);
+}
+.rightIconStyle {
+  position: absolute;
+  top: 50%;
+  right: 20px;
+  transform: translate(50%, -50%);
+}
+.inputWrapperStyle:has(.leftIconStyle) .inputStyle {
+  padding-left: 40px;
+}
+.inputWrapperStyle:has(.rightIconStyle) .inputStyle {
+  padding-right: 40px;
+}

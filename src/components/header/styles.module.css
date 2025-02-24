@@ -1,0 +1,54 @@
+.header_container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 30px 140px 22px 160px;
+  background-color: rgba(239, 239, 239, 1);
+  position: sticky;
+  top: 0;
+  z-index: 1;
+}
+.logo_menu_section {
+  display: flex;
+  align-items: center;
+  gap: 100px;
+}
+.header_logo {
+  width: 45px;
+  height: 45px;
+  cursor: pointer;
+}
+
+.header_menuContainer {
+  display: flex;
+  align-items: center;
+  gap: 80px;
+}
+
+.header_activeMenuItem,
+.header_inActiveMenuItem {
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 24px;
+  color: var(--darkGray);
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.header_activeMenuItem {
+  border-bottom: 1px solid var(--darkGray);
+}
+
+.header_warnerSwedenBtn {
+  height: 66px;
+  flex-direction: row-reverse;
+  gap: 20px;
+  align-items: center;
+  background-color: var(--white);
+  border: 4px solid var(--stoneGray);
+  border-radius: 15px;
+  color: var(--black);
+  white-space: nowrap;
+  padding: 14px 18px;
+}

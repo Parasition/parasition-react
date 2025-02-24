@@ -1,0 +1,397 @@
+.overview_container {
+  display: flex;
+  flex-direction: column;
+  gap: 78px;
+  padding: 100px;
+  background-color: var(--frostWhite);
+  padding: 114px 80px 200px 80px;
+}
+
+.overview_subContainer {
+  display: grid;
+  grid-template-columns: 60% 35%;
+  gap: 3%;
+}
+
+.overview_headerAndNewCampaignBtn {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.overview_headerAndList {
+  display: flex;
+  flex-direction: column;
+  gap: 78px;
+}
+
+.overview_header {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.overview_title {
+  font-size: 55px;
+  font-weight: 500;
+  line-height: 68px;
+  text-align: left;
+  color: var(--black);
+}
+
+.overview_subTitle {
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 22px;
+  text-align: left;
+  color: var(--charcoal);
+}
+
+.overview_list {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+.add_newFile_container {
+  height: 78px;
+}
+.overview_addIcon {
+  width: 24px;
+  height: 24px;
+}
+.overview_listItems {
+  display: flex;
+  flex-direction: column;
+  gap: 13px;
+}
+
+.overview_listItem {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 14px;
+  border-radius: 15px;
+  border: 4px solid var(--ash);
+  background-color: var(--white);
+}
+
+.overview_campaignDetails {
+  display: flex;
+  align-items: center;
+  gap: 23px;
+}
+
+.overview_campaignImg {
+  width: 114px;
+  height: 114px;
+  overflow: hidden;
+  border-radius: 15px;
+}
+
+.overview_campaignTitlesAndView {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.overview_campaignDetailsTitle {
+  font-size: 23px;
+  font-weight: 500;
+  line-height: 28.08px;
+  text-align: left;
+  color: var(--black);
+}
+
+.overview_viewsDetails {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.overview_totalViews {
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 26px;
+  text-align: left;
+  color: var(--black);
+}
+
+.overview_totalViewPastDays {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+.overview_totalViewsCount {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 4px;
+  background-color: var(--mistyGreen);
+  border-radius: 7px;
+}
+.overview_totalViewsCountText {
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 26px;
+  text-align: left;
+  color: var(--seaFoamGreen);
+}
+/* 
+.overview_totalViewsCount {
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 26px;
+  text-align: left;
+  background-color: var(--mistyGreen);
+  border-radius: 7px;
+  color: var(--seaFoamGreen);
+  padding: 4px;
+  align-self: center;
+} */
+
+.overview_totalViewLastDaysLabel {
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 26px;
+  text-align: left;
+  color: var(--charcoal);
+}
+
+.overview_campaignBtn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: fit-content;
+  padding: 12px 24px;
+  border-radius: 10px;
+  border: 3px solid var(--ash);
+  background-color: var(--white);
+  white-space: nowrap;
+
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 21.98px;
+  text-align: left;
+  color: var(--black);
+}
+
+.overview_newCampaignBtn {
+  width: 250px;
+}
+
+.overview_topCampaignsListAndGraph {
+  height: fit-content;
+  display: flex;
+  flex-direction: column;
+  gap: 37px;
+  padding: 28px 38px 44px 46px;
+  background-color: var(--white);
+  border: 2px solid rgba(217, 217, 217, 1);
+  border-radius: 15px;
+}
+
+.overview_headingAndGraphDetails {
+  display: flex;
+  flex-direction: column;
+  gap: 13px;
+}
+
+.overview_allCampaignsHeading {
+  font-size: 23px;
+  font-weight: 500;
+  line-height: 28.08px;
+  text-align: left;
+  color: var(--black);
+}
+.overview_graph_campaignView {
+  position: relative;
+}
+.overview_campaignViewsAndDropDown {
+  display: flex;
+  justify-content: space-between;
+  position: absolute;
+  width: 97%;
+  top: -2px;
+}
+
+.overview_campaignViews {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.overview_campaignViewsHeading {
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 21.98px;
+  text-align: left;
+  color: var(--charcoal);
+}
+
+.overview_campaignViewsCount {
+  font-size: 40px;
+  font-weight: 500;
+  line-height: 48.84px;
+  text-align: left;
+  color: var(--black);
+}
+
+.overview_pastDaysCount {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.overview_pastDaysText {
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 15.51px;
+  text-align: left;
+  color: var(--charcoal);
+}
+
+.overview_daysDropDown {
+  position: relative;
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  padding: 8px 10px 8px 12px;
+  border-radius: 10px;
+  border: 2px solid var(--platinum);
+  height: fit-content;
+  cursor: pointer;
+}
+
+.overview_selectOption {
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 22px;
+  text-align: left;
+  color: var(--charcoal);
+}
+
+.overview_downChevronGrayIcon,
+.overview_downChevronTransformedIcon {
+  width: 12px;
+  height: 12px;
+  transition: 0.3s;
+}
+
+.overview_downChevronTransformedIcon {
+  transform: rotate(180deg);
+}
+
+.overview_downChevronGrayIconFit {
+  object-fit: contain;
+}
+
+.overview_timeOptionsItems {
+  width: 150px;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--white);
+  border: 2px solid rgba(217, 217, 217, 1);
+  border-radius: 10px;
+}
+
+.overview_timeOption {
+  padding: 10px;
+  border-bottom: 1px solid var(--ash);
+  cursor: pointer;
+}
+
+.overview_timeOption:hover {
+  padding: 10px;
+  background-color: rgba(217, 217, 217, 1);
+  cursor: pointer;
+}
+
+.overview_popOver {
+  position: absolute;
+}
+
+.overview_viewsCounterIndicator {
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+  border-radius: 10px;
+  padding: 6px;
+  background-color: var(--mistyGreen);
+}
+.overview_viewsCountInTotal {
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 21.98px;
+  text-align: left;
+  color: var(--seaFoamGreen);
+}
+
+.overview_upArrowIcon {
+  width: 10px;
+  height: 12px;
+}
+
+.overview_topListDetails {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.overview_topCampaignHeading {
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 21.98px;
+  text-align: left;
+  color: var(--black);
+}
+
+.overview_topCampaignListItems {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.overview_topCampaignListBox {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.overview_serialNumber {
+  font-size: 28px;
+  font-weight: 500;
+  line-height: 34.19px;
+  text-align: left;
+  color: var(--black);
+}
+
+.overview_topCampaignListItem {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  padding: 6px;
+  border: 4px solid var(--ash);
+  background-color: var(--white);
+  border-radius: 15px;
+}
+
+.overview_topCampaignIcon {
+  width: 60px;
+  height: 60px;
+  overflow: hidden;
+}
+
+.overview_topCampaignIconFit {
+  object-fit: contain;
+  /* border-radius: 15px; */
+}
+
+.overview_topCampaignLabel {
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 22px;
+  text-align: left;
+  color: var(--black);
+}

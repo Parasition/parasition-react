@@ -1,0 +1,154 @@
+.containerStyle {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 26px;
+  gap: 12px;
+  border-radius: 15px;
+  border: 2px solid rgba(221, 221, 221, 1);
+  background: var(--white);
+  max-width: 394px;
+  min-width: 394px;
+  width: 100%;
+  position: relative;
+}
+.headerWarpperStyle {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+.headerRightWrapperStyle {
+  display: flex;
+  align-items: center;
+  gap: 28px;
+}
+.headerContentStyle {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 2px;
+}
+.headerTitleStyle {
+  color: var(--black);
+  font-size: 17px;
+  font-weight: 590;
+  line-height: 22px;
+  letter-spacing: -0.4300000071525574px;
+  text-align: left;
+  text-underline-position: from-font;
+  text-decoration-skip-ink: none;
+  cursor: pointer;
+}
+.iconWrapperStyle {
+  width: 15px;
+  height: 24px;
+  cursor: pointer;
+  border-radius: 10px;
+  transition: all 0.6s ease-in-out;
+}
+.iconWrapperStyle:hover {
+  transition: all 0.4s ease-in-out;
+}
+.iconStyle {
+  width: 100%;
+  height: 100%;
+}
+.weeksWrapperStyle {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  width: 100%;
+  gap: 6px;
+}
+.weekTitleStyle {
+  display: flex;
+  width: 100%;
+  height: 18px;
+  justify-content: center;
+  align-items: center;
+  flex-shrink: 0;
+  font-size: 13px;
+  font-weight: 590;
+  line-height: 18px;
+  text-align: center;
+  color: rgba(60, 60, 67, 0.3);
+}
+.daysWrapperStyle {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  width: 100%;
+  gap: 2px;
+}
+.dateWrapperStyle {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 44px;
+  height: 44px;
+  cursor: pointer;
+  border-radius: 24px;
+}
+.dateWrapperStyle:not(:empty, .selectedDateWrapperStyle):hover {
+  background-color: var(--iceBlue);
+}
+.currentDateWrapperStyle {
+  background-color: var(--iceBlue);
+}
+.selectedDateWrapperStyle,
+.selectedDateWrapperStyle:hover {
+  background-color: var(--iceBlue);
+}
+.dateWrapperStyle:empty {
+  cursor: initial;
+}
+.disabledDateWrapperStyle {
+  pointer-events: none;
+  opacity: 0.5;
+}
+.dateLabelStyle {
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 25px;
+  letter-spacing: -0.44999998807907104px;
+  text-align: center;
+  text-underline-position: from-font;
+  text-decoration-skip-ink: none;
+  color: var(--black);
+}
+.selectedDateLabelStyle {
+  color: var(--skyBlue);
+}
+.circleStyle {
+  width: 24px;
+  height: 24px;
+  border: 4px solid var(--border-color);
+  background-color: var(--white);
+  border-radius: 50%;
+}
+.monthWrapperStyle {
+  display: grid;
+  padding: 16px;
+  background-color: var(--white);
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2px;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  place-items: center;
+}
+.monthStyle {
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: var(--text-color);
+  font-family: 'InterTight';
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 20px;
+  width: fit-content;
+}

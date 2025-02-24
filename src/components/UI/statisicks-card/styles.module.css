@@ -1,0 +1,70 @@
+.viewCampaign_statisticCard {
+  width: 100%;
+  max-width: 204px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  border: 4px solid var(--ash);
+  border-radius: 15px;
+  background-color: var(--white);
+  padding: 12px 24px 15px 18px;
+}
+
+.viewCampaign_statisticTitle {
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 22px;
+  text-align: left;
+  color: var(--charcoal);
+}
+
+.viewCampaign_statisticSubTitle {
+  font-size: 40px;
+  font-weight: 500;
+  line-height: 48px;
+  text-align: left;
+  color: var(--black);
+}
+
+.viewCampaign_countAndIndicator {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.viewCampaign_viewsIndicatorAndPastDays {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.viewCampaign_Indicator {
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+  background-color: var(--mistyGreen);
+  border-radius: 10px;
+  padding: 6px;
+}
+
+.viewCampaign_count {
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 22px;
+  text-align: left;
+  color: var(--emeraldGreen);
+}
+
+.viewCampaign_upArrowIcon {
+  width: 10px;
+  height: 12px;
+}
+
+.viewCampaign_pastDays {
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 16px;
+  text-align: left;
+  color: var(--charcoal);
+  white-space: nowrap;
+}

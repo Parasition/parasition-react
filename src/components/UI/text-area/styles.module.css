@@ -1,0 +1,38 @@
+.textArea_container {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.textarea_label,
+.textArea_errorMsg,
+.textArea_input,
+.textArea_input::placeholder {
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 22px;
+  text-align: left;
+  color: var(--charcoal);
+}
+
+.textArea_input::placeholder {
+  color: var(--lightGray);
+}
+
+.textArea_input {
+  font-family: 'HelveticaNeueMedium';
+  height: 300px;
+  padding: 16px 18px;
+  border: 2px solid var(--platinum);
+  color: var(--black);
+  border-radius: 15px;
+  resize: none;
+}
+
+.textArea_input:focus-within {
+  outline: none;
+}
+
+.textArea_errorMsg {
+  color: red;
+}

@@ -1,0 +1,29 @@
+.button_Container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 15px 30px 17px 34px;
+  background-color: var(--black);
+  border: none;
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 24px;
+  text-align: center;
+  border-radius: 15px;
+  color: var(--white);
+  cursor: pointer;
+}
+
+.button_disabled {
+  opacity: 0.6;
+  cursor: default;
+}
+
+.button_icon {
+  width: 43px;
+  height: 40px;
+}
+
+.button_iconFit {
+  object-fit: contain;
+}

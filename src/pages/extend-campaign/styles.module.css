@@ -1,0 +1,78 @@
+.extendCampaign_container {
+  display: flex;
+  flex-direction: column;
+  gap: 78px;
+  padding: 60px;
+  background-color: var(--frostWhite);
+  /* height: calc(100vh - 118px); */
+  overflow-y: scroll;
+  padding: 114px 80px 200px 80px;
+}
+
+.extendCampaign_header {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.extendCampaign_title {
+  font-size: 55px;
+  font-weight: 500;
+  line-height: 67.15px;
+  text-align: left;
+  color: var(--black);
+}
+
+.extendCampaign_subTitle {
+  font-size: 22px;
+  font-weight: 400;
+  line-height: 26.25px;
+  text-align: left;
+  color: var(--ashGray);
+}
+
+.extendCampaign_budgetAccordionAndPreview {
+  display: flex;
+  /* grid-template-columns: 55% 40%; */
+  gap: 36px;
+  /* align-items: flex-start; */
+}
+
+.extendCampaign_budgetAndDatePicker {
+  display: flex;
+  flex-direction: column;
+  gap: 43px;
+}
+
+.extendCampaign_budgetTitleAndInput {
+  display: flex;
+  flex-direction: column;
+  gap: 36px;
+}
+
+.extendCampaign_budgetAccordionContainer {
+  width: 100%;
+  max-width: 850px;
+  height: fit-content;
+}
+
+.extendCampaign_budgetAccordion {
+  padding: 14px 30px 40px 40px;
+}
+.extendCampaign_calenderWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.extendCampaign_calender {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+.extendCampaign_calenderLabel {
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 21.47px;
+  letter-spacing: 0%;
+  color: var(--charcoal);
+}

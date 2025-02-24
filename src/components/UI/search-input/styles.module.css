@@ -1,0 +1,69 @@
+.searchPlaces_mainContainer {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 19px;
+}
+.searchPlaces_titleText {
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 21.47px;
+  color: var(--charcoal);
+}
+.searchPlaces_container {
+  position: relative;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 3px;
+  border: 2px solid var(--platinum);
+  border-radius: 15px;
+  padding: 6px;
+  flex-wrap: wrap;
+}
+.searchPlaces_tagItem {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 4px;
+  background-color: var(--ivory);
+  border-radius: 10px;
+  padding: 12px 14px;
+}
+.searchPlaces_tagValue {
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 21.47px;
+  color: var(--dim-grey);
+  white-space: nowrap;
+  word-wrap: nowrap;
+}
+.inputField {
+  width: 100%;
+  padding: 10px;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 21.47px;
+  outline: none;
+  border: none;
+}
+.searchPlaces_closeGrayIcon {
+  cursor: pointer;
+  width: 20px;
+  height: 20px;
+}
+.searchPlaces_suggestionsList {
+  width: 100%;
+}
+
+.searchPlaces_suggestionItem {
+  padding: 10px;
+  cursor: pointer;
+  border-top: 1px solid var(--platinum);
+}
+
+.searchPlaces_suggestionItem:hover {
+  background: #f0f0f0;
+}

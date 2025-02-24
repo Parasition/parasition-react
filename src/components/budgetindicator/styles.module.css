@@ -1,0 +1,53 @@
+.budgetIndicator_container {
+  max-width: 650px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.budgetIndicator_label {
+  font-size: 23px;
+  font-weight: 500;
+  line-height: 60px;
+  text-align: left;
+  color: var(--black);
+}
+
+.budgetIndicator_amount {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.budgetIndicator_spentAmount {
+  font-size: 40px;
+  font-weight: 500;
+  line-height: 60px;
+  text-align: left;
+  color: var(--emeraldGreen);
+}
+
+.budgetIndicator_separator,
+.budgetIndicator_totalAmount {
+  font-size: 40px;
+  font-weight: 500;
+  line-height: 60px;
+  text-align: left;
+  color: var(--black);
+}
+
+.progressBar {
+  width: 100%;
+  height: 6px;
+  background-color: var(--softCloud);
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.progressFill {
+  height: 100%;
+  border-radius: 10px;
+  background-color: var(--mintGreen);
+  transition: width 0.5s ease-in-out;
+}

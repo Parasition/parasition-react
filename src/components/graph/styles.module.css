@@ -1,0 +1,6 @@
+.graphContainer {
+  width: 100%;
+  background-color: var(--white);
+  border-radius: 8px;
+  height: 230px;
+}

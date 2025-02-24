@@ -1,0 +1,136 @@
+.signUp_container {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  margin: auto;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--frostWhite);
+}
+.signUp_topSection {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.main_logo {
+  width: 32px;
+  height: 32px;
+}
+.parasitionText {
+  font-family: Helvetica Neue, sans-serif;
+  font-size: 32px;
+  font-weight: 500;
+  line-height: 28px;
+  text-align: left;
+  text-underline-position: from-font;
+  text-decoration-skip-ink: none;
+  color: var(--black);
+}
+.sigUp_bottomSection {
+  background-color: var(--white);
+  width: 100%;
+  max-width: 500px;
+  padding: 16px;
+  border-radius: 16px;
+  border: 4px solid rgba(230, 230, 230, 1);
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.desc_content,
+.inputs_section {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.inputs_section {
+  max-height: 410px;
+  height: 100%;
+  overflow-y: scroll;
+}
+
+.inputs_Subsection,
+.passwordAndTextBox {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+}
+
+.passwordAndTextBox {
+  flex-direction: column;
+}
+
+.addressErrorMsg {
+  color: var(--tomato);
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 16px;
+}
+
+.address_textArea {
+  height: 150px;
+}
+
+.signUp_label {
+  font-family: Helvetica Neue, sans-serif;
+  font-size: 32px;
+  font-weight: 700;
+  line-height: 39.07px;
+  text-align: left;
+  text-underline-position: from-font;
+  text-decoration-skip-ink: none;
+  color: var(--black);
+}
+.login_desc,
+.already_accountLabel {
+  font-family: Inter, sans-serif;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 21.78px;
+  text-align: left;
+  text-underline-position: from-font;
+  text-decoration-skip-ink: none;
+  color: rgba(92, 92, 92, 1);
+}
+.already_accountLabel span {
+  color: var(--blue);
+  cursor: pointer;
+}
+.email_input_container,
+.password_input_container,
+.number_input_container,
+.name_input_container {
+  width: 100%;
+}
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type='number'] {
+  -moz-appearance: textfield;
+}
+.forgot_passwordText {
+  font-family: Open Sans, sans-serif;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 16px;
+  text-align: right;
+  text-underline-position: from-font;
+  text-decoration-skip-ink: none;
+  color: var(--blue);
+  cursor: pointer;
+}
+
+.signUp_authErrorMsg {
+  color: var(--tomato);
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 16px;
+}

@@ -1,0 +1,76 @@
+.wrapperStyle {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  width: fit-content;
+}
+.labelTextStyle,
+.labelStyle {
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 22px;
+  text-align: left;
+  color: var(--charcoal);
+}
+
+.rightIconStyle {
+  width: 7px;
+  height: 12px;
+}
+
+.pikcerContainerStyle {
+  min-width: 100px;
+  width: fit-content;
+  padding: 8px 14px;
+  border-radius: 4px;
+  border: 2px solid var(--platinum);
+  background-color: var(--white);
+  display: flex;
+  gap: 6px;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+  cursor: pointer;
+  border-radius: 10px;
+  opacity: 90%;
+}
+.disabledStyle {
+  opacity: 0.8;
+  pointer-events: none;
+}
+
+.valueStyle {
+  color: var(--black);
+}
+.placeHolderStyle {
+  color: var(--charcoal);
+}
+.iconWrapperStyle,
+.iconRotate {
+  width: 12px;
+  height: 14px;
+  transition: 0.3s;
+}
+
+.iconRotate {
+  transform: rotate(180deg);
+}
+
+.iconFit {
+  object-fit: contain;
+}
+
+.iconRotateStyle {
+  transform: rotate(180deg);
+}
+.iconWrapperStyle img {
+  width: 100%;
+  height: 100%;
+}
+.datePickPopOverStyle {
+  position: absolute !important;
+  inset: 14px auto auto 0px !important;
+}
+.overlayStyle {
+  z-index: 1;
+}

@@ -1,0 +1,87 @@
+.resultsCard_container {
+  width: 100%;
+  max-width: 414px;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  padding: 30px;
+  background-color: var(--white);
+  border: 2px solid var(--ash);
+  border-radius: 15px;
+}
+.rc_topSection {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+.rc_songName_text {
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 21.98px;
+  letter-spacing: 0%;
+  color: var(--black);
+}
+.rc_image_and_details {
+  display: flex;
+  gap: 20px;
+}
+.rc_reelDetails,
+.rc_profileBox {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+.rc_profileDetails {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 4px;
+}
+.rc_profileImg {
+  width: 45px;
+  height: 45px;
+}
+.rc_profileName {
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 21.98px;
+  letter-spacing: 0%;
+  text-align: center;
+  color: var(--black);
+}
+.rc_profileDesc {
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 19.09px;
+  letter-spacing: 0%;
+  color: var(--charcoal);
+}
+.rc_videoStatistics {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.rc_videoStatisticsLabel {
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 19.54px;
+  letter-spacing: 0%;
+  color: var(--black);
+}
+.rc_bottomSection {
+  border: 2px solid rgba(230, 230, 230, 1);
+  border-radius: 15px;
+  height: 56px;
+  padding: 16px 24px;
+}
+.rc_linkText {
+  width: 100%;
+  max-width: 320px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 21.47px;
+  letter-spacing: 0%;
+  color: var(--oceanBlue);
+}

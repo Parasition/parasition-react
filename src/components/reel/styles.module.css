@@ -1,0 +1,65 @@
+.reelCard_Container,
+.reelCard_selectedReelCardContainer {
+  position: relative;
+  width: 142px;
+  height: 250px;
+  border-radius: 15px;
+  overflow: hidden;
+  background-color: #000;
+  cursor: pointer;
+}
+
+.reelCard_selectedReelCardContainer {
+  outline: 3px solid var(--darkBlue);
+  outline-offset: 6px;
+}
+
+.video {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.reelCard_playAndViews {
+  position: absolute;
+  bottom: 10px;
+  left: 10px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.playIcon {
+  color: var(--white);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.reelCard_playIcon {
+  width: 10px;
+  height: 12px;
+}
+
+.reelCard_views {
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 17.09px;
+  text-align: left;
+  color: var(--white);
+}
+
+.enlargeIcon {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  background-color: rgba(0, 0, 0, 0.6);
+  color: var(--white);
+  border-radius: 50%;
+  padding: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}

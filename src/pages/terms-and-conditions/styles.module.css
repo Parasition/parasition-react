@@ -1,0 +1,118 @@
+.termsAndConditions_container {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+  padding: 80px;
+  background-color: var(--frostWhite);
+  overflow: scroll;
+}
+
+.termsAndConditions_container:last-child {
+  gap: 0px;
+}
+
+.termsAndConditions_overView {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.termsAndConditions_title {
+  font-size: 55px;
+  font-weight: 500;
+  line-height: 68px;
+  color: rgba(0, 0, 0, 1);
+}
+
+.termsAndConditions_lastUpdated,
+.termsAndConditions_lastUpdated span {
+  font-size: 22px;
+  font-weight: 400;
+  line-height: 26px;
+}
+
+.termsAndConditions_lastUpdated span {
+  font-weight: 600;
+}
+
+.termsAndConditions_description {
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 22px;
+}
+
+.termsAndConditions_keyPoints {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.termsAndConditions_keyPointBox {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.termsAndConditions_keyPointTitle {
+  font-size: 22px;
+  font-weight: 700;
+  line-height: 28px;
+  color: rgba(0, 0, 0, 1);
+}
+
+.termsAndConditions_subClauseBox {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.termsAndConditions_subClause {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.termsAndConditions_subClauseTitle {
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 22px;
+  color: rgba(0, 0, 0, 1);
+}
+
+.termsAndConditions_subClauseDesc,
+.termsAndConditions_privacyPolicyText {
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 22px;
+}
+
+.termsAndConditions_privacyPolicyText {
+  cursor: pointer;
+  color: rgba(41, 127, 239, 1);
+  border-bottom: 1px solid rgba(41, 127, 239, 1);
+  font-weight: bold;
+}
+
+.termsAndConditions_subClauseLevelTwo {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.termsAndConditions_subClauseLevelTwoDesc {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 10px;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 22px;
+}
+
+.termsAndConditions_keyPointBoxWithLastWords {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding-top: 20px;
+  border-top: 1px solid rgba(0, 0, 0, 1);
+}
