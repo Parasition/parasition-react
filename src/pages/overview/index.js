@@ -15,11 +15,14 @@ import PopOver from 'components/UI/popover';
 import strings from 'resources/strings/eng.json';
 import { getCampaignsListApi } from 'networking/apis/compaign';
 import moment from 'moment';
+import { useToastHook } from 'hooks/usetoasthook';
 import styles from './styles.module.css';
 
 const Overview = () => {
   // DUMMY DATA
   const { labelsData, dataPoints } = DummyData();
+
+  const { showToast } = useToastHook();
 
   // CONSTANTS
   const { routeNames, campaignDaysOptionsData } = Constants();
@@ -47,6 +50,7 @@ const Overview = () => {
       console.log('list', response.data.data);
       setCampaignsList(response.data.data);
     } catch (error) {
+      showToast.error(error.message);
       console.error('Error while fetching campaigns list', error);
     }
   };

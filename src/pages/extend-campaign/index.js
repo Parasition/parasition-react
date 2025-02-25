@@ -29,7 +29,7 @@ const ExtendCampaign = () => {
   const navigate = useNavigate();
 
   // STATES
-  const [isAccordionOpen, setIsAccordionOpen] = useState(false);
+  const [isAccordionOpen, setIsAccordionOpen] = useState(true);
   const [openPicker, setOpenPicker] = useState(null);
   const [extendStartDate, setExtendStartDate] = useState(
     campaign?.start_date || ''
@@ -117,27 +117,44 @@ const ExtendCampaign = () => {
   // FUNCTION : Tap on extend campaign Btn
 
   const tapOnExtendCampaignBtn = async () => {
+    if (!extendStartDate) {
+      showToast.error('Start date is required.');
+      return;
+    }
+    if (!extendEndDate) {
+      showToast.error('End date is required.');
+      return;
+    }
+    if (!extendedBudget) {
+      showToast.error('Budget is required.');
+      return;
+    }
+
     let data = {
       _id: campaign._id,
       start_date: extendStartDate,
       end_date: extendEndDate,
       budget: extendedBudget,
     };
+
     try {
       setIsLoading(true);
       const response = await extendBudgetApi(data);
+
       setIsLoading(false);
       setExtendedBudget('');
       setExtendStartDate('');
-      setExtendEndDate();
+      setExtendEndDate('');
       showToast.success(strings.campaignExtendedSuccessfully);
+
+      // Navigate after success
       setTimeout(() => {
         navigate(routeNames.overView);
       }, 2000);
     } catch (error) {
-      showToast.error(error.message);
-      console.log('errorerror', error);
       setIsLoading(false);
+      showToast.error(error.message || 'Failed to extend the campaign.');
+      console.error('API Error:', error);
     }
   };
 

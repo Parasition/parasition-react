@@ -34,8 +34,16 @@ const DatePicker = (props) => {
       const rect = pickerRef.getBoundingClientRect();
       const spaceBelow = window.innerHeight - rect.bottom;
       const spaceAbove = rect.top;
+      const spaceRight = window.innerWidth - rect.right;
+      const spaceLeft = rect.left;
 
-      if (spaceBelow < 300 && spaceAbove > spaceBelow) {
+      if (spaceBelow >= 300) {
+        setPosition('bottom');
+      } else if (spaceAbove >= 300) {
+        setPosition('top');
+      } else if (spaceRight >= 300) {
+        setPosition('right');
+      } else if (spaceLeft >= 300) {
         setPosition('left');
       } else {
         setPosition('bottom');
@@ -57,7 +65,7 @@ const DatePicker = (props) => {
           containerStyle
         )}
         onClick={() => !disabled && onToggle(!isOpen)}
-        ref={setPickerRef}
+        ref={(ref) => setPickerRef(ref)}
       >
         <span
           className={classNames(
@@ -121,8 +129,6 @@ DatePicker.propTypes = {
     PropTypes.instanceOf(Date),
   ]),
   placeholder: PropTypes.string,
-  format: PropTypes.string,
-  reports: PropTypes.array,
   icon: PropTypes.string,
   iconStyle: PropTypes.string,
   valueStyle: PropTypes.string,

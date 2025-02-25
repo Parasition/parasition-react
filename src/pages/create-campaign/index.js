@@ -35,12 +35,7 @@ import styles from './styles.module.css';
 const CreateCampaign = () => {
   // CONSTANTS
 
-  const {
-    routeNames,
-    enums,
-    genderStatisticsData,
-    campaignPreviewStatisticsData,
-  } = Constants();
+  const { routeNames, enums, genderStatisticsData } = Constants();
 
   // ROUTING
   const navigate = useNavigate();
@@ -74,6 +69,9 @@ const CreateCampaign = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [uploadedAudioFile, setUploadedAudioFile] = useState(null);
   const [showModal, setShowModal] = useState(false);
+
+  const [errors, setErrors] = useState({});
+
   const [previewData, setPreviewData] = useState([
     {
       icon: playBlackIcon,
@@ -192,7 +190,34 @@ const CreateCampaign = () => {
     return statistic;
   });
 
+  const validateFields = () => {
+    let newErrors = {};
+
+    if (!name) newErrors.name = 'Campaign name is required.';
+    if (!objective) newErrors.objective = 'Campaign objective is required.';
+    if (!description)
+      newErrors.description = 'Campaign description is required.';
+    if (!audios.length)
+      newErrors.audios = 'At least one audio file is required.';
+    if (!budget) newErrors.budget = 'Total budget is required.';
+    if (!starting_fund) newErrors.starting_fund = 'Starting fund is required.';
+    if (!ending_fund) newErrors.ending_fund = 'Ending fund is required.';
+    if (!start_date) newErrors.start_date = 'Start date is required.';
+    if (!end_date) newErrors.end_date = 'End date is required.';
+
+    setErrors(newErrors);
+
+    // Show the first error message in the toast
+    if (Object.keys(newErrors).length > 0) {
+      showToast.error(Object.values(newErrors)[0]); // Show first error message
+      return false;
+    }
+
+    return true;
+  };
+
   const handleLaunchCampaign = async () => {
+    if (!validateFields()) return;
     let data = {
       name,
       objective,

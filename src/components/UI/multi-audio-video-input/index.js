@@ -25,30 +25,31 @@ const MultiAudioVideoInput = (props) => {
     // Split pasted data by newlines, commas, or spaces
     const newValues = pasteData.split(/[\n, ]+/).filter(Boolean);
 
-    // TikTok Audio Link Validation
+    // TikTok Audio Validation (Supports `sound` and `music`)
     const tikTokAudioRegex =
-      /^https?:\/\/(www\.)?tiktok\.com\/music\/[\w-]+-\d+$/;
+      /^https?:\/\/(www\.)?tiktok\.com\/(music|sound)\/[\w-]+-\d+\/?$/;
 
-    // YouTube Video Link Validation
+    // YouTube Video Validation (Supports `watch?v=`, `shorts/`, and `youtu.be/`)
     const youTubeRegex =
-      /^https?:\/\/(www\.)?(youtube\.com\/watch\?v=|youtu\.be\/)[\w-]+$/;
+      /^https?:\/\/(www\.)?(youtube\.com\/(watch\?v=|shorts\/)|youtu\.be\/)[\w-]+/;
 
-    // SoundCloud Track Link Validation
+    // SoundCloud Track Validation (User/track format)
     const soundCloudRegex =
-      /^https?:\/\/(www\.)?soundcloud\.com\/[\w-]+\/[\w-]+$/;
+      /^https?:\/\/(www\.)?soundcloud\.com\/[\w-]+\/[\w-]+\/?$/;
 
-    // Spotify MP3 Preview Link Validation
+    // Spotify Track Preview Validation
     const spotifyRegex =
       /^https?:\/\/p\.scdn\.co\/mp3-preview\/[\w]+(\?cid=[\w]+)?$/;
 
-    // Instagram Reels Audio Link Validation
+    // Instagram Reels Audio Validation
     const instagramAudioRegex =
       /^https?:\/\/(www\.)?instagram\.com\/reels\/audio\/\d+\/?$/;
 
-    const audioRegex =
-      /^(https?:\/\/)?(www\.)?(tiktok\.com\/music\/|tiktok\.com\/sound\/|youtube\.com\/watch\?v=|youtu\.be\/|soundcloud\.com\/|facebook\.com\/.*\/videos\/|instagram\.com\/reels\/|instagram\.com\/p\/|spotify\.com\/track\/|.*\.(mp3|wav|aac|flac|ogg|m4a))$/;
+    // General Direct Audio File Link Validation (.mp3, .wav, .ogg, etc.)
+    const directAudioRegex =
+      /^https?:\/\/.*\.(mp3|wav|aac|flac|ogg|m4a)(\?.*)?$/;
 
-    // Filter only valid TikTok, YouTube, SoundCloud, Spotify, or Instagram links
+    // Validate links
     const validLinks = newValues.filter(
       (link) =>
         tikTokAudioRegex.test(link) ||
@@ -56,13 +57,11 @@ const MultiAudioVideoInput = (props) => {
         soundCloudRegex.test(link) ||
         spotifyRegex.test(link) ||
         instagramAudioRegex.test(link) ||
-        audioRegex.test(link)
+        directAudioRegex.test(link)
     );
 
     if (validLinks.length === 0) {
-      alert(
-        'Please paste a valid TikTok, YouTube, SoundCloud, Spotify, or Instagram Reels Audio link.'
-      );
+      alert('Please paste a valid audio file link.');
       return;
     }
 
@@ -79,7 +78,7 @@ const MultiAudioVideoInput = (props) => {
     const newValues = pasteData.split(/[\n, ]+/).filter(Boolean);
 
     const tikTokVideoRegex =
-      /^https?:\/\/(www\.)?tiktok\.com\/(@[\w.-]+\/)?video\/\d+\/?$/;
+      /^https?:\/\/(www\.)?tiktok\.com\/(@[\w.-]+\/)?video\/\d+(?:\?.*)?$/;
 
     const validLinks = newValues.filter((link) => tikTokVideoRegex.test(link));
 

@@ -8,7 +8,6 @@ import {
   upArrowWhiteIcon,
 } from 'resources/images';
 import ReelCard from 'components/reel';
-import { DummyData } from 'utils/dummy-data';
 import { BudgetIndicator } from 'components/budgetindicator';
 import { Button } from 'components/UI/button';
 import IndividualReel from 'components/individualreel';
@@ -24,9 +23,6 @@ import StatisticCard from 'components/UI/statisicks-card';
 const ViewCampaign = () => {
   const location = useLocation();
   const campaign = location.state || null;
-
-  // DUMMY DATA
-  const { reelLinksData, viewCampaignStatisticsData } = DummyData();
 
   // HOOKS
 
@@ -110,8 +106,8 @@ const ViewCampaign = () => {
       const response = await getCompaignDetailsApi(campaign.campaign_id);
       setCampaignDetails(response.data.data);
       setSelectedReel(response.data.data?.videos[0]);
-      console.log('Campaigns details', response.data.data);
     } catch (error) {
+      showToast.error(error.message);
       console.error('Error while fetching campaigns details', error);
     }
   };
