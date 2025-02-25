@@ -17,8 +17,9 @@ import { useToastHook } from 'hooks/usetoasthook';
 import strings from 'resources/strings/eng.json';
 import moment from 'moment';
 import { getCompaignDetailsApi } from 'networking/apis/compaign';
-import styles from './styles.module.css';
 import StatisticCard from 'components/UI/statisicks-card';
+import { Loader } from 'components/UI/loader';
+import styles from './styles.module.css';
 
 const ViewCampaign = () => {
   const location = useLocation();
@@ -37,6 +38,7 @@ const ViewCampaign = () => {
   // STATES
   const [selectedReel, setSelectedReel] = useState(null);
   const [campaignDetails, setCampaignDetails] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
   const [totalStats, setTotalStats] = useState({
     views: 0,
     likes: 0,
@@ -103,11 +105,14 @@ const ViewCampaign = () => {
 
   const getCampaignDetails = async () => {
     try {
+      setIsLoading(true);
       const response = await getCompaignDetailsApi(campaign.campaign_id);
       setCampaignDetails(response.data.data);
       setSelectedReel(response.data.data?.videos[0]);
+      setIsLoading(false);
     } catch (error) {
       showToast.error(error.message);
+      setIsLoading(false);
       console.error('Error while fetching campaigns details', error);
     }
   };
@@ -412,6 +417,7 @@ const ViewCampaign = () => {
 
   return (
     <div className={styles.viewCampaign_container}>
+      {isLoading && <Loader />}
       {renderBudgetSpend()}
       <div className={styles.viewCampaign_subContainer}>
         {renderStatisticsAndGallery()}

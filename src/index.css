@@ -57,6 +57,7 @@ body {
   --dim-grey: rgba(98, 98, 98, 1);
   --shadow-color08: rgba(30, 30, 32, 0.08);
   --desc-color20: rgba(30, 30, 32, 0.2);
+  --steel-blue: rgba(139, 167, 195, 1);
 }
 
 /* fonts */

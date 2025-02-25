@@ -1,4 +1,5 @@
 .viewCampaign_container {
+  position: relative;
   max-width: 1728px;
   width: 100%;
   margin: auto;

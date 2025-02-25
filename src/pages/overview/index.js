@@ -16,6 +16,7 @@ import strings from 'resources/strings/eng.json';
 import { getCampaignsListApi } from 'networking/apis/compaign';
 import moment from 'moment';
 import { useToastHook } from 'hooks/usetoasthook';
+import { Loader } from 'components/UI/loader';
 import styles from './styles.module.css';
 
 const Overview = () => {
@@ -38,6 +39,7 @@ const Overview = () => {
   const [totalViews, setTotalViews] = useState(0);
   const [totalLikes, setTotalLikes] = useState(0);
   const [topCampaigns, setTopCampaigns] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -46,10 +48,13 @@ const Overview = () => {
 
   const getCampaignsList = async () => {
     try {
+      setIsLoading(true);
       const response = await getCampaignsListApi();
       setCampaignsList(response.data.data);
+      setIsLoading(false);
     } catch (error) {
       showToast.error(error.message);
+      setIsLoading(false);
       console.error('Error while fetching campaigns list', error);
     }
   };
@@ -364,6 +369,7 @@ const Overview = () => {
 
   return (
     <div className={styles.overview_container}>
+      {isLoading && <Loader />}
       {renderOverViewHeader()}
       <div className={styles.overview_subContainer}>
         {renderCampaignsOverViewList()}

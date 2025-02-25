@@ -209,7 +209,7 @@ const CreateCampaign = () => {
 
     // Show the first error message in the toast
     if (Object.keys(newErrors).length > 0) {
-      showToast.error(Object.values(newErrors)[0]); // Show first error message
+      showToast.error(Object.values(newErrors)[0]);
       return false;
     }
 
@@ -615,6 +615,7 @@ const CreateCampaign = () => {
           handleLaunchCampaign();
         }}
         btnLoader={isLoading}
+        btnDisabled={isLoading}
       />
     );
   };
