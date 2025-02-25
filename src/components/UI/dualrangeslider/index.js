@@ -80,7 +80,7 @@ DualRangeSlider.propTypes = {
   onMouseDown: PropTypes.func,
   onTouchStart: PropTypes.func,
   style: PropTypes.object,
-  ref: PropTypes.ref,
+  ref: PropTypes.string,
 };
 
 export { DualRangeSlider };

@@ -29,6 +29,7 @@ import AudioCard from 'components/UI/audio-card';
 import Modal from 'components/UI/modal';
 import BreifGenerator from 'pages/breif-generator';
 import moment from 'moment';
+import { useToastHook } from 'hooks/usetoasthook';
 import styles from './styles.module.css';
 
 const CreateCampaign = () => {
@@ -43,6 +44,8 @@ const CreateCampaign = () => {
 
   // ROUTING
   const navigate = useNavigate();
+
+  const { showToast } = useToastHook();
 
   // STATES
   const [accordions, setAccordions] = useState({
@@ -209,23 +212,27 @@ const CreateCampaign = () => {
     try {
       setIsLoading(true);
       const response = await createCompaignApi(data);
-      setName('');
-      setObjective('');
-      setDescription('');
-      setAudios([]);
-      setAudioFiles(null);
-      setVideos([]);
-      setBudget('');
-      setStart_date(null);
-      setEnd_date(null);
-      setStarting_fund('');
-      setEnding_fund('');
-      setPlaces([]);
-      setAgeValues([18, 65]);
-      setGenderPercentage([50]);
-      setIsLoading(false);
-      navigate(routeNames.overView);
+      if (response) {
+        showToast.success('Campaign Created Successfully');
+        setName('');
+        setObjective('');
+        setDescription('');
+        setAudios([]);
+        setAudioFiles(null);
+        setVideos([]);
+        setBudget('');
+        setStart_date(null);
+        setEnd_date(null);
+        setStarting_fund('');
+        setEnding_fund('');
+        setPlaces([]);
+        setAgeValues([18, 65]);
+        setGenderPercentage([50]);
+        setIsLoading(false);
+        navigate(routeNames.overView);
+      }
     } catch (error) {
+      showToast.error(error.message);
       setIsLoading(false);
       console.log('error', error);
     }

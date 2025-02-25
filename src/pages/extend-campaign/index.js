@@ -129,7 +129,7 @@ const ExtendCampaign = () => {
       setIsLoading(false);
       setExtendedBudget('');
       setExtendStartDate('');
-      setExtendEndDate;
+      setExtendEndDate();
       showToast.success(strings.campaignExtendedSuccessfully);
       setTimeout(() => {
         navigate(routeNames.overView);

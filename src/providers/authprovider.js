@@ -70,7 +70,7 @@ const AuthProvider = ({ children }) => {
     async (registerData) => {
       setShowLoader(true);
       try {
-        const response = await registerApi(registerData);
+        await registerApi(registerData);
         setShowLoader(false);
         navigate(routeNames.login);
       } catch (error) {

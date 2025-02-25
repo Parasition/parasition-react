@@ -74,7 +74,7 @@ SingleRangeSlider.propTypes = {
   onMouseDown: PropTypes.string,
   onTouchStart: PropTypes.string,
   style: PropTypes.object,
-  ref: PropTypes.ref,
+  ref: PropTypes.string,
 };
 
 export { SingleRangeSlider };

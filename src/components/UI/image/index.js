@@ -60,7 +60,7 @@ Image.propTypes = {
   imageRef: propTypes.string,
   isLoading: propTypes.bool,
   onLoad: propTypes.func,
-  originalImgRef: propTypes.ref,
+  originalImgRef: propTypes.string,
   children: propTypes.node,
 };
 
