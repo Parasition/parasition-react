@@ -28,3 +28,10 @@
 .button_iconFit {
   object-fit: contain;
 }
+.loaderStyle {
+  width: 30px;
+  height: 30px;
+}
+.loaderContainerStyle {
+  border-radius: 15px;
+}

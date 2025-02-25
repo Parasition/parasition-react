@@ -29,7 +29,10 @@ const Button = (props) => {
     >
       {title}
       {isLoading && (
-        <Loader customLoaderStyle={classNames(styles.loaderStyle, loader)} />
+        <Loader
+          customLoaderStyle={classNames(styles.loaderStyle, loader)}
+          customLoaderContainerStyle={styles.loaderContainerStyle}
+        />
       )}
 
       {icon && (
