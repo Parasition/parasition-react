@@ -16,3 +16,6 @@ export const getCompaignDetailsApi = async (id) =>
 export const extendBudgetApi = async (data) => {
   return axiosInstance.post(endPoints.extendBudget, data);
 };
+
+export const getAudioDataApi = async (link) =>
+  Promise.resolve(axiosInstance.get(endPoints.getAudioData + `?link=${link}`));

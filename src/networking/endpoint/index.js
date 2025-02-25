@@ -6,3 +6,5 @@ export const createCompaign = '/campaign/create';
 export const getCampaignsList = '/campaign/all';
 export const getCompaignDetails = '/campaign/get';
 export const extendBudget = '/campaign/extend';
+
+export const getAudioData = '/audio/info';

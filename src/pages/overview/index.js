@@ -163,6 +163,8 @@ const Overview = () => {
     }
   };
 
+  // RENDER FUNCTIONS
+
   const renderOverViewHeader = () => {
     return (
       <div className={styles.overview_headerAndNewCampaignBtn}>

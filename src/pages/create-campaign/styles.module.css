@@ -122,6 +122,9 @@
   line-height: 22px;
   text-align: left;
   color: var(--black);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .createCampaign_audioTrackSubTitle,

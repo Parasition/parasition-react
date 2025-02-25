@@ -2,8 +2,8 @@ import React from 'react';
 import { Image } from 'components/UI/image';
 import { closeGrayIcon } from 'resources/images';
 import PropTypes from 'prop-types';
-import styles from './styles.module.css';
 import classNames from 'classnames';
+import styles from './styles.module.css';
 
 const MultiAudioVideoInput = (props) => {
   // PROPS
@@ -15,6 +15,7 @@ const MultiAudioVideoInput = (props) => {
     type,
     customMultiValueInput_subContainer,
     custom_inputField,
+    disabled = false,
   } = props;
 
   // FUNCTION : To paste the value
@@ -135,6 +136,7 @@ const MultiAudioVideoInput = (props) => {
             className={classNames(styles.inputField, custom_inputField)}
             onPaste={type === 'audio' ? handleAudioPaste : handleVideoPaste}
             onKeyDown={handleBackspace}
+            disabled={disabled}
           />
         </div>
       </div>
@@ -148,6 +150,7 @@ MultiAudioVideoInput.propTypes = {
   setValues: PropTypes.func,
   placeholder: PropTypes.string,
   type: PropTypes.string,
+  disabled: PropTypes.bool,
 };
 
 export { MultiAudioVideoInput };

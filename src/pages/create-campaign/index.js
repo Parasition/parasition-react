@@ -24,7 +24,7 @@ import { useNavigate } from 'react-router-dom';
 import strings from 'resources/strings/eng.json';
 import { MultiAudioVideoInput } from 'components/UI/multi-audio-video-input';
 import SearchInput from 'components/UI/search-input';
-import { createCompaignApi } from 'networking/apis/compaign';
+import { createCompaignApi, getAudioDataApi } from 'networking/apis/compaign';
 import AudioCard from 'components/UI/audio-card';
 import Modal from 'components/UI/modal';
 import BreifGenerator from 'pages/breif-generator';
@@ -153,11 +153,59 @@ const CreateCampaign = () => {
     });
   }, [places, ageValues, genderPercentage]);
 
+  const [sentUrls, setSentUrls] = useState(new Set());
+  const [audiosData, setAudiosData] = useState([]);
+  const [isAudioDataFetching, setIsAudioDataFetching] = useState(false);
+
+  useEffect(() => {
+    async function fetchAudioData() {
+      if (audios.length === 0) {
+        setAudiosData([]);
+        setSentUrls(new Set());
+        return;
+      }
+
+      const latestAudio = audios[audios.length - 1];
+
+      if (latestAudio && !sentUrls.has(latestAudio)) {
+        try {
+          setIsAudioDataFetching(true);
+          let audioData = await getAudioDataApi(latestAudio);
+
+          setAudiosData((prev) => [
+            ...prev,
+            { url: latestAudio, data: audioData.data.data },
+          ]);
+          setSentUrls((prev) => new Set([...prev, latestAudio]));
+
+          setIsAudioDataFetching(false);
+        } catch (error) {
+          setIsAudioDataFetching(false);
+          showToast.error(error.message);
+        }
+      }
+    }
+    fetchAudioData();
+  }, [audios]);
+
+  // Remove related data when an audio file is removed
+  useEffect(() => {
+    setAudiosData((prev) => prev.filter((audio) => audios.includes(audio.url)));
+
+    // Remove URLs of deleted audio files from sentUrls
+    setSentUrls((prev) => {
+      const updatedSet = new Set(prev);
+      prev.forEach((url) => {
+        if (!audios.includes(url)) {
+          updatedSet.delete(url);
+        }
+      });
+      return updatedSet;
+    });
+  }, [audios]);
+
   // GENDER PERCENTAGE CALCULATION
   const coveredPercentage = (genderPercentage / 100) * 100;
-
-  // HOOKS
-  const { dragOverProps, isDragging } = useDragDropHook();
 
   // FUNCTION : To toggle accordion
   const toggleAccordion = (key) => {
@@ -261,6 +309,15 @@ const CreateCampaign = () => {
       setIsLoading(false);
     }
   };
+
+  // FUNCTION : To format the duration
+  const formatDuration = (seconds) => {
+    if (!seconds) return '0:00';
+    const mins = Math.floor(seconds / 60);
+    const secs = Math.floor(seconds % 60);
+    return `${mins}:${secs.toString().padStart(2, '0')}`;
+  };
+
   // RENDER SECTIONS
 
   const renderCreateCampaignHeader = () => {
@@ -356,20 +413,21 @@ const CreateCampaign = () => {
               values={audios}
               setValues={setAudios}
               placeholder={strings.pasteTikTokLinkPlaceHolder}
+              disabled={isAudioDataFetching}
             />
           </div>
 
           <div className={styles.createCampaign_soundPreviewAndNewSound}>
-            {audios?.map((audio, index) => {
+            {audiosData?.map((audio, index) => {
               return (
                 <AudioCard
                   key={index}
-                  trackName={'In kom en ängel'}
+                  trackName={audio?.data.title}
                   trackImage={defaultAudioPreviewIcon}
-                  trackSinger={'Myriam Bryant'}
-                  duration={'1:00'}
-                  views={'560k Videos'}
-                  link={audio}
+                  trackSinger={audio?.data.authorName}
+                  duration={formatDuration(audio?.data.duration)}
+                  views={`${audio?.data.videoCount} Videos`}
+                  link={audio?.data.playUrl}
                 />
               );
             })}
@@ -427,11 +485,11 @@ const CreateCampaign = () => {
             placeholder={strings.pasteLinkHere}
           />
           <div className={styles.createCampaign_videoUploadPreview}>
-            <Image
+            {/* <Image
               image={dummyVideoPreviewImg}
               altText={strings.videoPreviewImg}
               customImageContainerStyle={styles.createCampaign_videoPreviewImg}
-            />
+            /> */}
 
             {videos?.map((link, index) => {
               return (
