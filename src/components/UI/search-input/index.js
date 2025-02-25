@@ -17,7 +17,6 @@ const SearchInput = ({ selectedPlaces, setSelectedPlaces }) => {
       script.src = `https://maps.googleapis.com/maps/api/js?key=${googleApiKey}&libraries=places`;
       script.async = true;
       script.onload = () => {
-        console.log('Google Maps script loaded');
         setTimeout(() => {
           if (
             window.google &&
@@ -26,7 +25,6 @@ const SearchInput = ({ selectedPlaces, setSelectedPlaces }) => {
           ) {
             autocompleteServiceRef.current =
               new window.google.maps.places.AutocompleteService();
-            console.log('AutocompleteService initialized');
             setScriptLoaded(true);
           } else {
             console.error('Google Maps API failed to load');

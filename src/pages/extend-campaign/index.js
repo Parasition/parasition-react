@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { Accordion } from 'components/UI/accordion';
 import { CampaignPreview } from 'components/campaign-preview';
 import DatePicker from 'components/datepicker';
@@ -9,20 +9,19 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import strings from 'resources/strings/eng.json';
 import moment from 'moment';
 import { extendBudgetApi } from 'networking/apis/compaign';
-import styles from './styles.module.css';
 import {
   openEyeBlackIcon,
   playBlackIcon,
   profileBlackIcon,
 } from 'resources/images';
+import styles from './styles.module.css';
 
 const ExtendCampaign = () => {
   const location = useLocation();
   const campaign = location.state?.campaign || null;
 
-  console.log('campaign', campaign);
   // CONSTANTS
-  const { routeNames, extendCampaignPreviewStatisticsData } = Constants();
+  const { routeNames } = Constants();
 
   // ROUTING
 
@@ -35,7 +34,9 @@ const ExtendCampaign = () => {
     campaign?.start_date || ''
   );
   const [extendEndDate, setExtendEndDate] = useState(campaign?.end_date || '');
-  const [extendedBudget, setExtendedBudget] = useState('');
+  const [extendedBudget, setExtendedBudget] = useState(
+    campaign?.budget?.total || ''
+  );
   const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
@@ -140,13 +141,11 @@ const ExtendCampaign = () => {
     try {
       setIsLoading(true);
       const response = await extendBudgetApi(data);
-
       setIsLoading(false);
       setExtendedBudget('');
       setExtendStartDate('');
       setExtendEndDate('');
       showToast.success(strings.campaignExtendedSuccessfully);
-
       // Navigate after success
       setTimeout(() => {
         navigate(routeNames.overView);
@@ -248,6 +247,7 @@ const ExtendCampaign = () => {
         btnTitle={strings.extendCampaign}
         onPressBtn={() => tapOnExtendCampaignBtn()}
         btnLoader={isLoading}
+        btnDisabled={isLoading}
       />
     );
   };

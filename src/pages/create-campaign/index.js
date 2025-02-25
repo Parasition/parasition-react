@@ -259,7 +259,6 @@ const CreateCampaign = () => {
     } catch (error) {
       showToast.error(error.message);
       setIsLoading(false);
-      console.log('error', error);
     }
   };
   // RENDER SECTIONS

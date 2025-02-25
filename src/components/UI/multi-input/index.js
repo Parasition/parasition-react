@@ -9,7 +9,6 @@ const MultiValueInput = (props) => {
 
   const { label, values, setValues, placeholder } = props;
 
-  console.log('values', values);
   // FUNCTION : To paste the value
   const handlePaste = (e) => {
     e.preventDefault();

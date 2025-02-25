@@ -20,6 +20,7 @@ const CampaignPreview = (props) => {
     btnTitle = 'Launch Campaign',
     onPressBtn = () => {},
     btnLoader = false,
+    btnDisabled = false,
   } = props;
 
   const renderCampaignPreviewHeader = () => {
@@ -91,7 +92,7 @@ const CampaignPreview = (props) => {
         onClick={onPressBtn}
         classname={styles.campaignPreview_launchCampaignBtn}
         isLoading={btnLoader}
-        disabled={btnLoader}
+        disabled={btnDisabled}
       />
     );
   };
@@ -120,6 +121,7 @@ CampaignPreview.propTypes = {
   estimatedCpv: PropTypes.string,
   btnTitle: PropTypes.string,
   btnLoader: PropTypes.bool,
+  btnDisabled: PropTypes.bool,
   onPressBtn: PropTypes.func,
 };
 

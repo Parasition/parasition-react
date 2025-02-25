@@ -47,7 +47,6 @@ const Overview = () => {
   const getCampaignsList = async () => {
     try {
       const response = await getCampaignsListApi();
-      console.log('list', response.data.data);
       setCampaignsList(response.data.data);
     } catch (error) {
       showToast.error(error.message);
