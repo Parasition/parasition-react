@@ -108,6 +108,7 @@ const ViewCampaign = () => {
       setIsLoading(true);
       const response = await getCompaignDetailsApi(campaign.campaign_id);
       setCampaignDetails(response.data.data);
+      console.log('response', response.data.data);
       setSelectedReel(response.data.data?.videos[0]);
       setIsLoading(false);
     } catch (error) {
@@ -375,13 +376,16 @@ const ViewCampaign = () => {
                 <div className={styles.viewCampaign_copyLinkAndLabel}>
                   <div className={styles.viewCampaign_link}>
                     <p className={styles.viewCampaign_linkTextSparkCode}>
-                      {sparkAdCode}
+                      {selectedReel?.boost_code}
                     </p>
                   </div>
                   <label
                     className={styles.viewCampaign_copyLinkLabel}
                     onClick={() =>
-                      handleCopyLink(sparkAdCode, 'copySparkAdCode')
+                      handleCopyLink(
+                        selectedReel?.boost_code,
+                        'copySparkAdCode'
+                      )
                     }
                   >
                     {strings.copySparkCode}
@@ -392,7 +396,9 @@ const ViewCampaign = () => {
                 title={strings.boostVideo}
                 icon={upArrowWhiteIcon}
                 icoAltText={strings.upArrowWhiteIcon}
-                onClick={() => handleCopyLink(sparkAdCode, 'copySparkAdCode')}
+                onClick={() =>
+                  handleCopyLink(selectedReel.boost_code, 'copySparkAdCode')
+                }
                 startIconStyle={styles.viewCampaign_upArrowIcon}
                 classname={styles.viewCampaign_boostVideoBtn}
               />
