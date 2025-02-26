@@ -15,13 +15,10 @@ import ResultsCard from 'components/UI/results-card';
 import AudioCard from 'components/UI/audio-card';
 import { Button } from 'components/UI/button';
 import FileUploadInput from 'components/fileuploadInput';
-import useDragDropHook from 'hooks/usedragdrophook';
 import styles from './styles.module.css';
 
 const BreifGenerator = (props) => {
   const { onClose } = props;
-  // HOOKS
-  const { dragOverProps, isDragging } = useDragDropHook();
 
   //state
   const [videoLinks, setVideoLinks] = useState([]);
@@ -132,7 +129,12 @@ const BreifGenerator = (props) => {
         </div>
         <div className={styles.bg_resultCards}>
           {[...Array(3)].map((_, index) => (
-            <ResultsCard key={index} />
+            <ResultsCard
+              resultWithAI={true}
+              title={'Song name'}
+              key={index}
+              videoUrl={'https://www.tiktok.com/@_theasextra...'}
+            />
           ))}
         </div>
       </div>

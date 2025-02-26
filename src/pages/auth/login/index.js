@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Image } from 'components/UI/image';
-import { parasitionLogo } from 'resources/images';
+import { loveIcon, parasitionLogo } from 'resources/images';
 import Input from 'components/UI/input';
 import { Button } from 'components/UI/button';
 import { useNavigate } from 'react-router-dom';
@@ -56,15 +56,14 @@ const Login = () => {
     setShowLoader(false);
   };
 
-  const renderLogo = () => {
+  const renderHeader = () => {
     return (
-      <div className={styles.login_topSection}>
+      <div className={styles.login_headerWrapper}>
         <Image
           image={parasitionLogo}
-          altText="logo"
           customImageContainerStyle={styles.main_logo}
         />
-        <p className={styles.parasitionText}>Parasition.love</p>
+        <p className={styles.parasitionText}>Parasition</p>
       </div>
     );
   };
@@ -75,8 +74,8 @@ const Login = () => {
         <div className={styles.desc_content}>
           <p className={styles.login_label}>Log In</p>
           <p className={styles.dontHaveAccountLabel}>
-            Don't have an account? &nbsp;
-            <span onClick={() => navigate(routeNames.signUp)}>Sign Up</span>
+            If you haven’t received a log in to Parastion’s services please
+            contact us... &nbsp;
           </p>
         </div>
         <div className={styles.inputs_section}>
@@ -111,19 +110,44 @@ const Login = () => {
           title="LogIn"
           onClick={() => tapOnLoginBtn()}
           isLoading={showLoader}
+          classname={styles.login_btn}
         />
 
         {authError && <p className={styles.login_authErrorMsg}>{authError}</p>}
+        <div className={styles.forgot_passwordandLoginWrapper}>
+          <p className={styles.forgot_passwordText}>Forgot password?</p>
+          <p className={styles.forgot_passwordText}>Can’t Log In </p>
+          <p
+            className={styles.forgot_passwordText}
+            onClick={() => navigate(routeNames.signUp)}
+          >
+            Sign Up
+          </p>
+        </div>
+      </div>
+    );
+  };
 
-        <p className={styles.forgot_passwordText}>Forgot password?</p>
+  const renderBottomSection = () => {
+    return (
+      <div className={styles.login_bottomWrapper}>
+        <p className={styles.login_bottomText}>Our first love letter.</p>
+        <Image
+          image={loveIcon}
+          altText="love icon"
+          customImageContainerStyle={styles.login_loveIcoon}
+        />
       </div>
     );
   };
 
   return (
     <div className={styles.login_container}>
-      {renderLogo()}
-      {renderInputsAndBtn()}
+      {renderHeader()}
+      <div className={styles.login_subContainer}>
+        {renderInputsAndBtn()}
+        {renderBottomSection()}
+      </div>
     </div>
   );
 };

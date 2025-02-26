@@ -20,6 +20,7 @@ import { getCompaignDetailsApi } from 'networking/apis/compaign';
 import StatisticCard from 'components/UI/statisicks-card';
 import { Loader } from 'components/UI/loader';
 import styles from './styles.module.css';
+import ResultsCard from 'components/UI/results-card';
 
 const ViewCampaign = () => {
   const location = useLocation();
@@ -61,6 +62,7 @@ const ViewCampaign = () => {
     getCampaignDetails();
   }, [campaign]);
 
+  // Initialize the total stats and stats increase
   useEffect(() => {
     if (!campaignDetails?.videos) return;
 
@@ -103,12 +105,12 @@ const ViewCampaign = () => {
     setTotalStats(aggregatedStats);
   }, [campaignDetails]);
 
+  // get campaign details api call
   const getCampaignDetails = async () => {
     try {
       setIsLoading(true);
       const response = await getCompaignDetailsApi(campaign.campaign_id);
       setCampaignDetails(response.data.data);
-      console.log('response', response.data.data);
       setSelectedReel(response.data.data?.videos[0]);
       setIsLoading(false);
     } catch (error) {
@@ -139,6 +141,7 @@ const ViewCampaign = () => {
   //   }
   // };
 
+  // handle copy link
   const handleCopyLink = (text, type) => {
     navigator.clipboard
       .writeText(text)
@@ -159,6 +162,8 @@ const ViewCampaign = () => {
         showToast.error('Failed to copy link: ', err);
       });
   };
+
+  // RENDER METHODS
 
   const renderBudgetSpend = () => {
     return (
@@ -306,106 +311,25 @@ const ViewCampaign = () => {
   };
 
   const renderIndividualVideo = () => {
-    const sparkAdCode = '#Gju6EAEHh2cK9nisoI7PH9CsNv1pOyIZ5Djpk6...';
-
     return (
       <div className={styles.viewCampaign_selectVideoBoxAndCopyLink}>
-        <div className={styles.viewCampaign_selectedVideoBox}>
-          <h5 className={styles.viewCampaign_selectedVideoTitle}>
-            {strings.selectedVideo}
-          </h5>
-
-          <div className={styles.viewCampaign_videoOverViewAndLinks}>
-            <div className={styles.viewCampaign_videoOverviewDetails}>
-              <IndividualReel
-                videoUrl={
-                  selectedReel
-                    ? selectedReel.url
-                    : 'https://www.w3schools.com/html/mov_bbb.mp4'
-                }
-              />
-
-              <div className={styles.viewCampaign_reelDetails}>
-                <div className={styles.viewCampaign_profileBox}>
-                  <div className={styles.viewCampaign_profileDetails}>
-                    <Image
-                      image={dummyProfileIcon}
-                      altText="profileImg"
-                      customImageContainerStyle={styles.viewCampaign_profileImg}
-                    />
-                    <h6 className={styles.viewCampaign_profileName}>
-                      {selectedReel?.creator_social_name}
-                    </h6>
-                  </div>
-                  <p className={styles.viewCampaign_profileDesc}>
-                    {selectedReel?.desc}
-                  </p>
-                </div>
-                <div className={styles.viewCampaign_videoStatistics}>
-                  <p className={styles.viewCampaign_videoStatisticsLabel}>
-                    {strings.views}&nbsp; {selectedReel?.stats?.view_count}
-                  </p>
-                  <p className={styles.viewCampaign_videoStatisticsLabel}>
-                    {strings.likes}&nbsp; {selectedReel?.stats?.like_count}
-                  </p>
-                  <p className={styles.viewCampaign_videoStatisticsLabel}>
-                    {strings.comments}&nbsp;{' '}
-                    {selectedReel?.stats?.comment_count}
-                  </p>
-                  <p className={styles.viewCampaign_videoStatisticsLabel}>
-                    {strings.shares}&nbsp; {selectedReel?.stats?.share_count}
-                  </p>
-                </div>
-              </div>
-            </div>
-            <div className={styles.viewCampaign_linksInputsAndBoostBtn}>
-              <div className={styles.viewCampaign_copyLinkBox}>
-                <div className={styles.viewCampaign_copyLinkAndLabel}>
-                  <div className={styles.viewCampaign_link}>
-                    <p className={styles.viewCampaign_linkText}>
-                      {selectedReel?.url}
-                    </p>
-                  </div>
-                  <label
-                    className={styles.viewCampaign_copyLinkLabel}
-                    onClick={() => handleCopyLink(selectedReel.url, 'copyLink')}
-                  >
-                    {strings.copyLink}
-                  </label>
-                </div>
-                <div className={styles.viewCampaign_copyLinkAndLabel}>
-                  <div className={styles.viewCampaign_link}>
-                    <p className={styles.viewCampaign_linkTextSparkCode}>
-                      {selectedReel?.boost_code}
-                    </p>
-                  </div>
-                  <label
-                    className={styles.viewCampaign_copyLinkLabel}
-                    onClick={() =>
-                      handleCopyLink(
-                        selectedReel?.boost_code,
-                        'copySparkAdCode'
-                      )
-                    }
-                  >
-                    {strings.copySparkCode}
-                  </label>
-                </div>
-              </div>
-              <Button
-                title={strings.boostVideo}
-                icon={upArrowWhiteIcon}
-                icoAltText={strings.upArrowWhiteIcon}
-                onClick={() =>
-                  handleCopyLink(selectedReel.boost_code, 'copySparkAdCode')
-                }
-                startIconStyle={styles.viewCampaign_upArrowIcon}
-                classname={styles.viewCampaign_boostVideoBtn}
-              />
-            </div>
-          </div>
-        </div>
-
+        <ResultsCard
+          title={strings.selectedVideo}
+          videoUrl={selectedReel?.url}
+          profileName={selectedReel?.creator_id}
+          profileDesc={selectedReel?.desc}
+          views={selectedReel?.stats?.view_count}
+          likes={selectedReel?.stats?.like_count}
+          comments={selectedReel?.stats?.comment_count}
+          shares={selectedReel?.stats?.share_count}
+          boost_code={selectedReel?.boost_code}
+          handleCopyVideoLink={() => {
+            handleCopyLink(selectedReel.url, 'copyLink');
+          }}
+          handleCopyBoostLink={() =>
+            handleCopyLink(selectedReel?.boost_code, 'copySparkAdCode')
+          }
+        />
         {copyLinks.copySparkAdCode && (
           <div className={styles.viewCampaign_codeCopyBox}>
             Spark Ad Code Successfully Copied!

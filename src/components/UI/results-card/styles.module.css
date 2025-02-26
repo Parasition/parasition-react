@@ -1,87 +1,154 @@
+/* styles  */
 .resultsCard_container {
+  height: 100%;
+  max-width: 556px;
   width: 100%;
-  max-width: 414px;
+  background-color: var(--white);
+  border-radius: 15px;
+  border: 4px solid var(--ash);
+}
+.resultsCard_title {
+  font-size: 23px;
+  font-weight: 500;
+  line-height: 28px;
+  text-align: left;
+  color: var(--black);
+  padding: 25px 25px 18px 30px;
+}
+.resultsCard_subContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 34px;
+  padding: 0px 38px 30px 46px;
+}
+.resultsCard_detailsWrapper {
+  display: flex;
+  gap: 27px;
+}
+.resultsCard_details {
   display: flex;
   flex-direction: column;
   gap: 30px;
-  padding: 30px;
-  background-color: var(--white);
-  border: 2px solid var(--ash);
-  border-radius: 15px;
 }
-.rc_topSection {
+
+.resultsCard_profileBox {
+  display: flex;
+  flex-direction: column;
+  gap: 13px;
+}
+
+.resultsCard_profileDetails {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.resultsCard_profileImg {
+  width: 54px;
+  height: 54px;
+  overflow: hidden;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.resultsCard_profileName {
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 24.42px;
+  color: var(--black);
+  word-break: break-all;
+}
+
+.resultsCard_profileDesc {
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 21.47px;
+  text-align: left;
+  color: var(--charcoal);
+}
+
+.resultsCard_statistics {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.resultsCard_statisticsLabel {
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 22px;
+  text-align: left;
+  color: var(--black);
+}
+
+.resultsCard_linksInputsAndBoostBtn {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.resultsCard_copyLinkBox {
   display: flex;
   flex-direction: column;
   gap: 14px;
 }
-.rc_songName_text {
-  font-weight: 700;
-  font-size: 18px;
-  line-height: 21.98px;
-  letter-spacing: 0%;
-  color: var(--black);
-}
-.rc_image_and_details {
-  display: flex;
-  gap: 20px;
-}
-.rc_reelDetails,
-.rc_profileBox {
+
+.resultsCard_copyLinkAndLabel {
   display: flex;
   flex-direction: column;
-  gap: 18px;
+  gap: 8px;
 }
-.rc_profileDetails {
+
+.resultsCard_link {
   display: flex;
-  flex-direction: row;
   align-items: center;
-  gap: 4px;
-}
-.rc_profileImg {
-  width: 45px;
-  height: 45px;
-}
-.rc_profileName {
-  font-weight: 500;
-  font-size: 18px;
-  line-height: 21.98px;
-  letter-spacing: 0%;
-  text-align: center;
-  color: var(--black);
-}
-.rc_profileDesc {
-  font-weight: 400;
-  font-size: 16px;
-  line-height: 19.09px;
-  letter-spacing: 0%;
-  color: var(--charcoal);
-}
-.rc_videoStatistics {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-.rc_videoStatisticsLabel {
-  font-weight: 600;
-  font-size: 16px;
-  line-height: 19.54px;
-  letter-spacing: 0%;
-  color: var(--black);
-}
-.rc_bottomSection {
-  border: 2px solid rgba(230, 230, 230, 1);
-  border-radius: 15px;
   height: 56px;
-  padding: 16px 24px;
+  border: 4px solid var(--ash);
+  background-color: var(--white);
+  border-radius: 15px;
+  padding: 12px 20px;
 }
-.rc_linkText {
+
+.resultsCard_linkText,
+.resultsCard_linkTextSparkCode {
+  max-width: 400px;
   width: 100%;
-  max-width: 320px;
   overflow: hidden;
   text-overflow: ellipsis;
-  font-weight: 400;
   font-size: 18px;
-  line-height: 21.47px;
-  letter-spacing: 0%;
+  font-weight: 500;
+  line-height: 21.98px;
+  text-align: left;
   color: var(--oceanBlue);
+}
+
+.resultsCard_linkTextSparkCode {
+  color: var(--black);
+}
+
+.resultsCard_copyLinkLabel {
+  width: fit-content;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 22px;
+  text-align: left;
+  color: var(--blue);
+  border-bottom: 1px solid var(--blue);
+  margin-left: 5px;
+  cursor: pointer;
+}
+
+.resultsCard_boostVideoBtn {
+  width: 215px;
+  align-self: flex-end;
+  padding: 16px 30px 16px 10px;
+  background-color: var(--oceanBlue);
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 24px;
+  gap: 16px;
+}
+.resultsCard_upArrowIcon {
+  width: 12px;
+  height: 16px;
 }

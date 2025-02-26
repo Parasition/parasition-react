@@ -107,11 +107,26 @@ const Constants = () => {
 
   // CAMPAIGN OPTIONS DATA
   const campaignDaysOptionsData = [
-    '1 day',
-    '7 days',
-    '90 days',
-    '1 year',
-    'all time',
+    {
+      label: '1 day',
+      value: 1,
+    },
+    {
+      label: '7 days',
+      value: 7,
+    },
+    {
+      label: '90 days',
+      value: 90,
+    },
+    {
+      label: '1 year',
+      value: 365,
+    },
+    {
+      label: 'all time',
+      value: null,
+    },
   ];
 
   return {

@@ -27,10 +27,10 @@ import SearchInput from 'components/UI/search-input';
 import { createCompaignApi, getAudioDataApi } from 'networking/apis/compaign';
 import AudioCard from 'components/UI/audio-card';
 import Modal from 'components/UI/modal';
-import BreifGenerator from 'pages/breif-generator';
 import moment from 'moment';
 import { useToastHook } from 'hooks/usetoasthook';
 import styles from './styles.module.css';
+import BreifGenerator from 'components/breif-generator';
 
 const CreateCampaign = () => {
   // CONSTANTS
@@ -69,9 +69,10 @@ const CreateCampaign = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [uploadedAudioFile, setUploadedAudioFile] = useState(null);
   const [showModal, setShowModal] = useState(false);
-
+  const [sentUrls, setSentUrls] = useState(new Set());
+  const [audiosData, setAudiosData] = useState([]);
+  const [isAudioDataFetching, setIsAudioDataFetching] = useState(false);
   const [errors, setErrors] = useState({});
-
   const [previewData, setPreviewData] = useState([
     {
       icon: playBlackIcon,
@@ -90,6 +91,7 @@ const CreateCampaign = () => {
     },
   ]);
 
+  // BUDGET RANGE DATA
   const budgetData = {
     1500: { videos: [21, 33], views: [165000, 210000] },
     2000: { videos: [28, 44], views: [220000, 280000] },
@@ -105,9 +107,10 @@ const CreateCampaign = () => {
     window.scrollTo(0, 0);
   }, []);
 
+  // PREVIEW DATA
   useEffect(() => {
     if (budget) {
-      let budgetKey = 1500; // Default to 1500 EUR
+      let budgetKey = 1500;
 
       // If the exact budget exists in budgetData, use it; otherwise, fallback to 1500
       if (budgetData[budget]) {
@@ -136,6 +139,7 @@ const CreateCampaign = () => {
     }
   }, [budget]);
 
+  // HANDEL AUDIENCE DATA
   useEffect(() => {
     setAudienceData({
       age: {
@@ -153,10 +157,7 @@ const CreateCampaign = () => {
     });
   }, [places, ageValues, genderPercentage]);
 
-  const [sentUrls, setSentUrls] = useState(new Set());
-  const [audiosData, setAudiosData] = useState([]);
-  const [isAudioDataFetching, setIsAudioDataFetching] = useState(false);
-
+  // FETCH AUDIO DATA
   useEffect(() => {
     async function fetchAudioData() {
       if (audios.length === 0) {
@@ -238,6 +239,7 @@ const CreateCampaign = () => {
     return statistic;
   });
 
+  // VALIDATE FIELDS
   const validateFields = () => {
     let newErrors = {};
 
@@ -264,6 +266,7 @@ const CreateCampaign = () => {
     return true;
   };
 
+  // FUNCTION: To handle launch campaign
   const handleLaunchCampaign = async () => {
     if (!validateFields()) return;
     let data = {
@@ -280,7 +283,7 @@ const CreateCampaign = () => {
       },
       start_date,
       end_date,
-      audienceData,
+      audience: audienceData,
     };
     try {
       setIsLoading(true);
@@ -308,14 +311,6 @@ const CreateCampaign = () => {
       showToast.error(error.message);
       setIsLoading(false);
     }
-  };
-
-  // FUNCTION : To format the duration
-  const formatDuration = (seconds) => {
-    if (!seconds) return '0:00';
-    const mins = Math.floor(seconds / 60);
-    const secs = Math.floor(seconds % 60);
-    return `${mins}:${secs.toString().padStart(2, '0')}`;
   };
 
   // RENDER SECTIONS
@@ -425,7 +420,7 @@ const CreateCampaign = () => {
                   trackName={audio?.data.title}
                   trackImage={defaultAudioPreviewIcon}
                   trackSinger={audio?.data.authorName}
-                  duration={formatDuration(audio?.data.duration)}
+                  duration={audio?.data.duration}
                   views={`${audio?.data.videoCount} Videos`}
                   link={audio?.data.playUrl}
                 />

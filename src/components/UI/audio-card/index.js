@@ -5,6 +5,15 @@ import styles from './styles.module.css';
 
 const AudioCard = (props) => {
   const { trackImage, trackName, trackSinger, duration, views, link } = props;
+
+  // FUNCTION : To format the duration
+  const formatDuration = (seconds) => {
+    if (!seconds) return '0:00';
+    const mins = Math.floor(seconds / 60);
+    const secs = Math.floor(seconds % 60);
+    return `${mins}:${secs.toString().padStart(2, '0')}`;
+  };
+
   return (
     <div className={styles.createCampaign_soundPreview}>
       <div className={styles.createCampaign_audioDetails}>
@@ -23,7 +32,9 @@ const AudioCard = (props) => {
               {trackSinger}
             </p>
           </div>
-          <p className={styles.createCampaign_audioTrackDuration}>{duration}</p>
+          <p className={styles.createCampaign_audioTrackDuration}>
+            {formatDuration(duration)}
+          </p>
         </div>
       </div>
       <div className={styles.createCampaign_audioViewsDetails}>

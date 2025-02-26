@@ -12,6 +12,7 @@ import {
 } from 'chart.js';
 import { Line } from 'react-chartjs-2';
 import PropTypes from 'prop-types';
+import moment from 'moment';
 import styles from './styles.module.css';
 
 ChartJS.register(
@@ -28,24 +29,6 @@ ChartJS.register(
 const GraphView = (props) => {
   // PROPS
   const { labels, dataPoints } = props;
-
-  const data = {
-    labels,
-    datasets: [
-      {
-        label: 'Views',
-        data: dataPoints,
-        fill: true,
-        backgroundColor: 'rgba(0, 190, 95, 0.1)',
-        borderColor: '#00be5f',
-        pointBackgroundColor: '#00be5f',
-        pointBorderColor: '#fff',
-        pointRadius: 2,
-        pointHoverRadius: 7,
-        tension: 0,
-      },
-    ],
-  };
 
   const options = {
     responsive: true,
@@ -79,7 +62,12 @@ const GraphView = (props) => {
           drawBorder: true,
         },
         ticks: {
-          display: false,
+          display: true,
+          autoSkip: true,
+          maxTicksLimit: 10,
+          callback: function (value, index, values) {
+            return moment(labels[index]).format('MMM D');
+          },
         },
       },
       y: {
@@ -89,11 +77,31 @@ const GraphView = (props) => {
           drawBorder: true,
         },
         ticks: {
-          display: false,
+          display: true,
         },
         beginAtZero: true,
+        suggestedMin: 0,
+        suggestedMax: Math.max(...dataPoints, 0),
       },
     },
+  };
+
+  const data = {
+    labels,
+    datasets: [
+      {
+        label: 'Views',
+        data: dataPoints,
+        fill: true,
+        backgroundColor: 'rgba(0, 190, 95, 0.1)',
+        borderColor: '#00be5f',
+        pointBackgroundColor: '#00be5f',
+        pointBorderColor: '#fff',
+        pointRadius: 2,
+        pointHoverRadius: 7,
+        tension: 0,
+      },
+    ],
   };
 
   return (

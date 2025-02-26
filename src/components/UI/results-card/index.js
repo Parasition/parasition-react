@@ -1,13 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import styles from './styles.module.css';
 import strings from 'resources/strings/eng.json';
 import { Image } from '../image';
-import { dummyProfileIcon } from 'resources/images';
+import { dummyProfileIcon, upArrowWhiteIcon } from 'resources/images';
 import IndividualReel from 'components/individualreel';
+import { Button } from '../button';
+import styles from './styles.module.css';
 
 const ResultsCard = ({
+  title,
   videoUrl,
   profileImage = dummyProfileIcon,
   profileName = '@Madeline',
@@ -17,18 +19,11 @@ const ResultsCard = ({
   comments = '5,2k',
   shares = '2,9k',
   linkText = 'https://www.tiktok.com/@_theasextra...',
-  containerStyle,
-  topSectionStyle,
-  songNameStyle,
-  imageAndDetailsStyle,
-  reelDetailsStyle,
-  profileBoxStyle,
-  profileDetailsStyle,
-  profileImgStyle,
-  profileNameStyle,
-  profileDescStyle,
-  videoStatisticsStyle,
-  videoStatisticsLabelStyle,
+  boost_code,
+  handleCopyVideoLink,
+  handleCopyBoostLink,
+  className,
+  resultWithAI = false,
 }) => {
   const handleCopyLink = () => {
     navigator.clipboard.writeText(linkText).then(() => {
@@ -37,108 +32,100 @@ const ResultsCard = ({
   };
 
   return (
-    <div className={classNames(styles.resultsCard_container, containerStyle)}>
-      <div className={classNames(styles.rc_topSection, topSectionStyle)}>
-        <p className={classNames(styles.rc_songName_text, songNameStyle)}>
-          Song name
-        </p>
+    <div className={classNames(styles.resultsCard_container, className)}>
+      <h5 className={classNames(styles.resultsCard_title)}>{title}</h5>
 
-        <div
-          className={classNames(
-            styles.rc_image_and_details,
-            imageAndDetailsStyle
-          )}
-        >
+      <div className={styles.resultsCard_subContainer}>
+        <div className={styles.resultsCard_detailsWrapper}>
           <IndividualReel
-            videoUrl={videoUrl || 'https://www.w3schools.com/html/mov_bbb.mp4'}
+            videoUrl={
+              videoUrl ? videoUrl : 'https://www.w3schools.com/html/mov_bbb.mp4'
+            }
           />
-          <div className={classNames(styles.rc_reelDetails, reelDetailsStyle)}>
-            <div className={classNames(styles.rc_profileBox, profileBoxStyle)}>
-              <div
-                className={classNames(
-                  styles.rc_profileDetails,
-                  profileDetailsStyle
-                )}
-              >
+
+          <div className={styles.resultsCard_details}>
+            <div className={styles.resultsCard_profileBox}>
+              <div className={styles.resultsCard_profileDetails}>
                 <Image
                   image={profileImage}
                   altText="profileImg"
-                  customImageContainerStyle={classNames(
-                    styles.rc_profileImg,
-                    profileImgStyle
-                  )}
+                  customImageContainerStyle={styles.resultsCard_profileImg}
                 />
-                <h6
-                  className={classNames(
-                    styles.rc_profileName,
-                    profileNameStyle
-                  )}
-                >
+                <h6 className={styles.resultsCard_profileName}>
                   {profileName}
                 </h6>
               </div>
-              <p
-                className={classNames(styles.rc_profileDesc, profileDescStyle)}
-              >
-                {profileDesc}
-              </p>
+              <p className={styles.resultsCard_profileDesc}>{profileDesc}</p>
             </div>
-            <div
-              className={classNames(
-                styles.rc_videoStatistics,
-                videoStatisticsStyle
-              )}
-            >
-              <p
-                className={classNames(
-                  styles.rc_videoStatisticsLabel,
-                  videoStatisticsLabelStyle
-                )}
-              >
-                {strings.views}&nbsp;{views}
+            <div className={styles.resultsCard_statistics}>
+              <p className={styles.resultsCard_statisticsLabel}>
+                {strings.views}&nbsp; {views}
               </p>
-              <p
-                className={classNames(
-                  styles.rc_videoStatisticsLabel,
-                  videoStatisticsLabelStyle
-                )}
-              >
-                {strings.likes}&nbsp;{likes}
+              <p className={styles.resultsCard_statisticsLabel}>
+                {strings.likes}&nbsp; {likes}
               </p>
-              <p
-                className={classNames(
-                  styles.rc_videoStatisticsLabel,
-                  videoStatisticsLabelStyle
-                )}
-              >
-                {strings.comments}&nbsp;{comments}
+              <p className={styles.resultsCard_statisticsLabel}>
+                {strings.comments}&nbsp; {comments}
               </p>
-              <p
-                className={classNames(
-                  styles.rc_videoStatisticsLabel,
-                  videoStatisticsLabelStyle
-                )}
-              >
-                {strings.shares}&nbsp;{shares}
+              <p className={styles.resultsCard_statisticsLabel}>
+                {strings.shares}&nbsp; {shares}
               </p>
             </div>
           </div>
         </div>
-      </div>
-      <div className={styles.rc_bottomSection}>
-        <p
-          className={styles.rc_linkText}
-          onClick={handleCopyLink}
-          style={{ cursor: 'pointer' }}
-        >
-          {linkText}
-        </p>
+        <div className={styles.resultsCard_linksInputsAndBoostBtn}>
+          <div className={styles.resultsCard_copyLinkBox}>
+            {videoUrl && (
+              <div className={styles.resultsCard_copyLinkAndLabel}>
+                <div className={styles.resultsCard_link}>
+                  <p className={styles.resultsCard_linkText}>{videoUrl}</p>
+                </div>
+                {!resultWithAI && (
+                  <label
+                    className={styles.resultsCard_copyLinkLabel}
+                    onClick={handleCopyVideoLink}
+                  >
+                    {strings.copyLink}
+                  </label>
+                )}
+              </div>
+            )}
+            {boost_code && (
+              <div className={styles.resultsCard_copyLinkAndLabel}>
+                <div className={styles.resultsCard_link}>
+                  <p className={styles.resultsCard_linkTextSparkCode}>
+                    {boost_code}
+                  </p>
+                </div>
+                {!resultWithAI && (
+                  <label
+                    className={styles.resultsCard_copyLinkLabel}
+                    onClick={handleCopyBoostLink}
+                  >
+                    {strings.copySparkCode}
+                  </label>
+                )}
+              </div>
+            )}
+          </div>
+          {boost_code && (
+            <Button
+              title={strings.boostVideo}
+              icon={upArrowWhiteIcon}
+              icoAltText={strings.upArrowWhiteIcon}
+              onClick={handleCopyBoostLink}
+              startIconStyle={styles.resultsCard_upArrowIcon}
+              classname={styles.resultsCard_boostVideoBtn}
+            />
+          )}
+        </div>
       </div>
     </div>
   );
 };
 
 ResultsCard.propTypes = {
+  title: PropTypes.string,
   videoUrl: PropTypes.string,
   profileImage: PropTypes.string,
   profileName: PropTypes.string,
@@ -148,18 +135,11 @@ ResultsCard.propTypes = {
   comments: PropTypes.string,
   shares: PropTypes.string,
   linkText: PropTypes.string,
-  containerStyle: PropTypes.string,
-  topSectionStyle: PropTypes.string,
-  songNameStyle: PropTypes.string,
-  imageAndDetailsStyle: PropTypes.string,
-  reelDetailsStyle: PropTypes.string,
-  profileBoxStyle: PropTypes.string,
-  profileDetailsStyle: PropTypes.string,
-  profileImgStyle: PropTypes.string,
-  profileNameStyle: PropTypes.string,
-  profileDescStyle: PropTypes.string,
-  videoStatisticsStyle: PropTypes.string,
-  videoStatisticsLabelStyle: PropTypes.string,
+  boost_code: PropTypes.string,
+  handleCopyVideoLink: PropTypes.func,
+  handleCopyBoostLink: PropTypes.func,
+  resultWithAI: PropTypes.bool,
+  className: PropTypes.string,
 };
 
 export default ResultsCard;

@@ -3,11 +3,27 @@
   height: 100vh;
   display: flex;
   flex-direction: column;
-  gap: 24px;
-  margin: auto;
-  align-items: center;
-  justify-content: center;
+  gap: 60px;
   background-color: var(--frostWhite);
+}
+.login_subContainer {
+  width: 100%;
+  height: calc(100vh - 120px);
+  display: flex;
+  flex-direction: column;
+  gap: 54px;
+  align-items: center;
+}
+
+.login_headerWrapper {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 100px;
+  width: 100%;
+  background-color: var(--lightCloud);
+  height: 120px;
+  padding: 44px 160px;
 }
 .login_topSection {
   display: flex;
@@ -15,15 +31,15 @@
   gap: 8px;
 }
 .main_logo {
-  width: 32px;
-  height: 32px;
+  width: 45px;
+  height: 45px;
+  flex-shrink: 0;
 }
 .parasitionText {
   font-family: Helvetica Neue, sans-serif;
-  font-size: 32px;
+  font-size: 20px;
   font-weight: 500;
-  line-height: 28px;
-  text-align: left;
+  line-height: 24px;
   text-underline-position: from-font;
   text-decoration-skip-ink: none;
   color: var(--black);
@@ -31,19 +47,19 @@
 .login_bottomSection {
   background-color: var(--white);
   width: 100%;
-  max-width: 500px;
-  padding: 16px;
+  max-width: 850px;
+  padding: 47px;
   border-radius: 16px;
   border: 4px solid rgba(230, 230, 230, 1);
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 32px;
 }
 .desc_content,
 .inputs_section {
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 32px;
 }
 .login_label {
   font-family: Helvetica Neue, sans-serif;
@@ -76,14 +92,25 @@
 }
 .forgot_passwordText {
   font-family: Open Sans, sans-serif;
-  font-size: 12px;
+  font-size: 18px;
   font-weight: 400;
-  line-height: 16px;
-  text-align: right;
+  line-height: 21px;
+  text-align: left;
   text-underline-position: from-font;
   text-decoration-skip-ink: none;
+  text-decoration: underline;
   color: var(--blue);
   cursor: pointer;
+}
+.forgot_passwordandLoginWrapper {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 16px;
+  width: 100%;
+}
+.login_btn {
+  width: 161px;
 }
 
 .login_authErrorMsg {
@@ -91,4 +118,23 @@
   font-size: 12px;
   font-weight: 600;
   line-height: 16px;
+}
+.login_bottomWrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+}
+.login_bottomText {
+  font-weight: 700;
+  font-size: 40px;
+  line-height: 48.84px;
+  letter-spacing: 0%;
+  text-align: center;
+  color: var(--black);
+}
+.login_loveIcoon {
+  width: 95px;
+  height: 85px;
+  flex-shrink: 0;
 }

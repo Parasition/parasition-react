@@ -1,5 +1,5 @@
 // COMMON IMAGES
-
+export { default as loveIcon } from 'assets/images/love-icon.svg';
 export { default as parasitionLogo } from 'assets/images/parasition-logo.svg';
 export { default as chevronBlackIcon } from 'assets/images/chevron-black-icon.svg';
 export { default as closeGrayIcon } from 'assets/images/close-gray-icon.svg';

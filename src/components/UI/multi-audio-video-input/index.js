@@ -27,8 +27,7 @@ const MultiAudioVideoInput = (props) => {
     const newValues = pasteData.split(/[\n, ]+/).filter(Boolean);
 
     // TikTok Audio Validation (Supports `sound` and `music`)
-    const tikTokAudioRegex =
-      /^https?:\/\/(www\.)?tiktok\.com\/(music|sound)\/[\w-]+-\d+\/?$/;
+    const tikTokAudioRegex = /tiktok\.com\/music\/.+-(\d+)/;
 
     // YouTube Video Validation (Supports `watch?v=`, `shorts/`, and `youtu.be/`)
     const youTubeRegex =
@@ -79,7 +78,7 @@ const MultiAudioVideoInput = (props) => {
     const newValues = pasteData.split(/[\n, ]+/).filter(Boolean);
 
     const tikTokVideoRegex =
-      /^https?:\/\/(www\.)?tiktok\.com\/(@[\w.-]+\/)?video\/\d+(?:\?.*)?$/;
+      /^(https?:\/\/)?(www\.)?(tiktok\.com\/@([\w\.-]+)\/video\/(\d{19})|vm\.tiktok\.com\/([\w-]{9}))\/?(\?.*)?$/i;
 
     const validLinks = newValues.filter((link) => tikTokVideoRegex.test(link));
 

@@ -6,7 +6,6 @@ import { Constants } from 'utils/constants';
 import Layout from 'layout';
 import PublicRoute from './publicRoute';
 import ProtectedRoute from './protectedRoute';
-import BreifGenerator from 'pages/breif-generator';
 
 const CreateCampaign = lazy(() => import('pages/create-campaign'));
 const OverView = lazy(() => import('pages/overview'));
@@ -75,10 +74,10 @@ const AppRoutes = () => {
           path: routeNames.privacyPolicy,
           element: <PrivacyPolicy />,
         },
-        {
-          path: routeNames.breifGenerator,
-          element: <BreifGenerator />,
-        }
+        // {
+        //   path: routeNames.breifGenerator,
+        //   element: <BreifGenerator />,
+        // }
       ],
     },
     {
