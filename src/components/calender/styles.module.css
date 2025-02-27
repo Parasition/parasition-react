@@ -107,6 +107,7 @@
   opacity: 0.5;
 }
 .dateLabelStyle {
+  font-family: 'HelveticaNeueRoman';
   font-size: 20px;
   font-weight: 400;
   line-height: 25px;

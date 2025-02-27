@@ -52,6 +52,7 @@
 }
 
 .resultsCard_profileName {
+  font-family: 'HelveticaNeueBold';
   font-size: 20px;
   font-weight: 700;
   line-height: 24.42px;
@@ -60,6 +61,7 @@
 }
 
 .resultsCard_profileDesc {
+  font-family: 'HelveticaNeuelight';
   font-size: 18px;
   font-weight: 400;
   line-height: 21.47px;
@@ -127,6 +129,7 @@
 }
 
 .resultsCard_copyLinkLabel {
+  font-family: 'HelveticaNeueRoman';
   width: fit-content;
   font-size: 18px;
   font-weight: 400;

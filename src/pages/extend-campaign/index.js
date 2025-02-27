@@ -49,7 +49,7 @@ const ExtendCampaign = () => {
   const [previewData, setPreviewData] = useState([
     {
       icon: playBlackIcon,
-      label: 'Total Videos',
+      label: 'Estimate Videos',
       count: '',
     },
     {
@@ -92,7 +92,7 @@ const ExtendCampaign = () => {
     setPreviewData([
       {
         icon: playBlackIcon,
-        label: 'Total Videos',
+        label: 'Estimate Videos',
         count: `${videos[1]}`,
       },
       {

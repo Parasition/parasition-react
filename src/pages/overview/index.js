@@ -8,7 +8,7 @@ import {
   upArrowGreenIcon,
 } from 'resources/images';
 import GraphView from 'components/graph';
-import { useNavigate } from 'react-router-dom';
+import { data, useNavigate } from 'react-router-dom';
 import { Constants } from 'utils/constants';
 import PopOver from 'components/UI/popover';
 import strings from 'resources/strings/eng.json';
@@ -76,7 +76,16 @@ const Overview = () => {
         if (!campaign?.creator_videos) return;
 
         campaign.creator_videos.forEach((video) => {
-          views += video.stats?.view_count || 0;
+          if (!video?.video_stats || video.video_stats.length === 0) return;
+
+          // Get the latest video stats based on stats_date
+          const latestStats = video.video_stats.reduce((latest, current) => {
+            return new Date(current.stats_date) > new Date(latest.stats_date)
+              ? current
+              : latest;
+          }, video.video_stats[0]);
+
+          views += latestStats.stats?.view_count || 0;
         });
       });
 
@@ -119,51 +128,6 @@ const Overview = () => {
     setTopCampaigns(sortedCampaigns);
   }, [campaignsList]);
 
-  // Calculate daily views for each campaign
-  useEffect(() => {
-    if (!campaignsList || !Array.isArray(campaignsList)) return;
-
-    let dailyViewsMap = new Map();
-
-    campaignsList.forEach((campaign) => {
-      if (!campaign.creator_videos) return;
-
-      campaign.creator_videos.forEach((video) => {
-        if (!video.video_stats) return;
-
-        let stats = video.video_stats;
-
-        // Sort by date to ensure correct order
-        stats.sort((a, b) => new Date(a.stats_date) - new Date(b.stats_date));
-
-        for (let i = 1; i < stats.length; i++) {
-          let current = stats[i];
-          let previous = stats[i - 1];
-
-          let dailyViewCount =
-            current.stats.view_count - previous.stats.view_count;
-
-          let dateKey = new Date(current.stats_date)
-            .toISOString()
-            .split('T')[0]; // Extract YYYY-MM-DD
-
-          // Aggregate daily views
-          dailyViewsMap.set(
-            dateKey,
-            (dailyViewsMap.get(dateKey) || 0) + dailyViewCount
-          );
-        }
-      });
-    });
-
-    // Convert Map to arrays
-    let extractedDates = Array.from(dailyViewsMap.keys());
-    let extractedDailyViews = Array.from(dailyViewsMap.values());
-
-    setDates(extractedDates);
-    setDailyViews(extractedDailyViews);
-  }, [campaignsList]);
-
   // calculate the overall increased views
   useEffect(() => {
     const calculateTotalViews = () => {
@@ -175,26 +139,35 @@ const Overview = () => {
         camp?.creator_videos?.forEach((video) => {
           let data = video?.video_stats || [];
 
+          // If video_stats is empty, skip calculations
+          if (!data.length) return;
+
           if (filterRange.value !== null) {
             const filterDate = moment()
               .subtract(filterRange.value, 'days')
               .format('YYYY-MM-DD');
 
-            data = data.filter(
-              (videoStats) => !moment(videoStats.stats_date).isAfter(filterDate)
+            data = data.filter((videoStats) =>
+              moment(videoStats.stats_date).isSameOrAfter(filterDate)
             );
+
+            if (data.length === 0) {
+              return (increasedViewCount = 0);
+            }
 
             increasedViewCount +=
               video.stats?.view_count - (data[0]?.stats?.view_count || 0);
           } else {
-            const yesterday = moment().subtract(1, 'days').format('YYYY-MM-DD');
+            // Find the latest date entry in video_stats
+            const latestStats = data.reduce((latest, current) => {
+              return moment(current.stats_date).isAfter(
+                moment(latest.stats_date)
+              )
+                ? current
+                : latest;
+            }, data[0]);
 
-            const yesterdayData = data.find(
-              (videoStats) =>
-                moment(videoStats.stats_date).format('YYYY-MM-DD') === yesterday
-            );
-
-            increasedViewCount += yesterdayData?.stats?.view_count || 0;
+            increasedViewCount += latestStats?.stats?.view_count || 0;
           }
         });
 
@@ -212,69 +185,133 @@ const Overview = () => {
     setTotalIncViews(calculateTotalViews());
   }, [campaignsList, filterRange]);
 
-  // const handleDiffeDays = (date) => {
-  //   if (date) {
-  //     let now = moment();
-  //     let createdMoment = moment(date);
-
-  //     let diffDays = now.diff(createdMoment, 'days');
-  //     let diffMonths = now.diff(createdMoment, 'months');
-  //     let diffYears = now.diff(createdMoment, 'years');
-
-  //     if (diffDays <= 7) {
-  //       return diffDays === 0 ? 'today' : `In the last ${diffDays} days`;
-  //     } else if (diffMonths === 0) {
-  //       return 'In the last month';
-  //     } else if (diffMonths > 0 && diffYears === 0) {
-  //       return `In the last ${diffMonths} months`;
-  //     } else {
-  //       return `In the last ${diffYears} years`;
-  //     }
-  //   }
-  // };
+  // Function to format counts
+  const formatCount = (count) => {
+    if (count >= 1_000_000) return `${Math.floor(count / 100_000) / 10}m`;
+    if (count >= 1_000) return `${Math.floor(count / 100) / 10}k`;
+    return count.toString();
+  };
 
   const formatViewsCount = (camp) => {
     let increasedViewCount = 0;
 
     camp?.creator_videos?.forEach((video) => {
-      let data = video?.video_stats || [];
+      let data = video?.video_stats;
+
+      if (!data || data.length === 0) {
+        increasedViewCount += 0;
+        return;
+      }
 
       if (filterRange.value !== null) {
+        // Get the date range for filtering
         const filterDate = moment()
           .subtract(filterRange.value, 'days')
           .format('YYYY-MM-DD');
 
-        data = data.filter(
-          (videoStats) => !moment(videoStats.stats_date).isAfter(filterDate)
+        data = data.filter((videoStats) =>
+          moment(videoStats.stats_date).isSameOrAfter(filterDate)
         );
+
+        if (data.length === 0) {
+          return (increasedViewCount = 0);
+        }
 
         increasedViewCount +=
           video.stats?.view_count - (data[0]?.stats?.view_count || 0);
       } else {
-        const yesterday = moment().subtract(1, 'days').format('YYYY-MM-DD');
+        // Find the latest date entry in video_stats
+        const latestStats = data.reduce((latest, current) => {
+          return moment(current.stats_date).isAfter(moment(latest.stats_date))
+            ? current
+            : latest;
+        }, data[0]);
 
-        const yesterdayData = data.find(
-          (videoStats) =>
-            moment(videoStats.stats_date).format('YYYY-MM-DD') === yesterday
-        );
-
-        increasedViewCount += yesterdayData?.stats?.view_count || 0;
+        increasedViewCount += latestStats?.stats?.view_count || 0;
       }
     });
-    if (increasedViewCount >= 1_000_000)
-      return `${Math.floor(increasedViewCount / 100_000) / 10}M`;
-    if (increasedViewCount >= 1_000)
-      return `${Math.floor(increasedViewCount / 100) / 10}K`;
-
-    return increasedViewCount || 0;
+    return formatCount(increasedViewCount) || 0;
   };
 
   // calculate total view of each campaign
   const calculateTotalViewsofEachCampaign = (data) => {
-    return data.reduce((totalViews, video) => {
-      return totalViews + video.stats.view_count;
+    return data.reduce((total, campaign) => {
+      if (!campaign.video_stats || campaign.video_stats.length === 0)
+        return total;
+
+      // Find the latest video_stats entry based on stats_date
+      const latestStats = campaign.video_stats.reduce((latest, current) =>
+        new Date(current.stats_date) > new Date(latest.stats_date)
+          ? current
+          : latest
+      );
+
+      return formatCount(total + (latestStats.stats.view_count || 0));
     }, 0);
   };
+
+  // Calculate views of each campaign for map
+  useEffect(() => {
+    if (!campaignsList || !Array.isArray(campaignsList)) return;
+    const lastDates = [];
+
+    if (filterRange.value !== null) {
+      lastDates.push(
+        ...Array.from({ length: filterRange.value }, (_, i) =>
+          moment()
+            .subtract(i + 1, 'days')
+            .format('YYYY-MM-DD')
+        ).reverse()
+      );
+    } else {
+      if (campaignsList.length === 0) return { startDate: null, endDate: null };
+      const earliestStartDate = new Date(
+        Math.min(...campaignsList.map((c) => new Date(c.start_date)))
+      );
+      const today = new Date();
+      today.setHours(0, 0, 0, 0);
+      let currentDate = new Date(earliestStartDate);
+      while (currentDate <= today) {
+        lastDates.push(currentDate.toISOString().split('T')[0]);
+        currentDate.setDate(currentDate.getDate() + 1);
+      }
+    }
+    const capms = [];
+    lastDates.map((date) => {
+      campaignsList.map((camp) => {
+        camp.creator_videos.map((video) => {
+          const filterVideo = video.video_stats.find(
+            (item) => moment(item.stats_date).format('YYYY-MM-DD') === date
+          );
+          let index = capms.findIndex((item) => item.date === date);
+          if (index !== -1) {
+            if (filterVideo) {
+              capms[index].stats_video.push(filterVideo);
+            }
+          } else {
+            if (filterVideo) {
+              capms.push({ date: date, stats_video: [filterVideo] });
+            } else {
+              capms.push({ date: date, stats_video: [] });
+            }
+          }
+        });
+      });
+    });
+    let updatedCamps = [];
+    capms.map((item) => {
+      updatedCamps.push({
+        date: item.date,
+        count: item.stats_video.reduce(
+          (acc, curr) => acc + curr.stats.view_count,
+          0
+        ),
+      });
+    });
+    setDates(lastDates);
+    setDailyViews(updatedCamps.map((item) => item.count));
+    // console.log('updatedCamps', updatedCamps);
+  }, [campaignsList, filterRange]);
 
   // RENDER FUNCTIONS
 
@@ -317,26 +354,24 @@ const Overview = () => {
                         customImageContainerStyle={styles.overview_campaignImg}
                       />
                       <div className={styles.overview_campaignTitlesAndView}>
-                        <h5 className={styles.overview_campaignDetailsTitle}>
+                        <p className={styles.overview_campaignDetailsTitle}>
                           {campaign?.name || campaign.objective}
-                        </h5>
+                        </p>
 
                         <div className={styles.overview_viewsDetails}>
-                          <h6 className={styles.overview_totalViews}>
+                          <p className={styles.overview_totalViews}>
                             {campaign?.creator_videos?.length > 0
                               ? calculateTotalViewsofEachCampaign(
                                   campaign?.creator_videos
                                 )
                               : 0}{' '}
                             Views
-                          </h6>
+                          </p>
                           <div className={styles.overview_totalViewPastDays}>
                             <div className={styles.overview_totalViewsCount}>
-                              <p
-                                className={styles.overview_totalViewsCountText}
-                              >
-                                {formatViewsCount(campaign) ? '+' : ''}
-                              </p>
+                              <span>
+                                {formatViewsCount(campaign) > 0 ? '+' : ''}
+                              </span>
                               <p
                                 className={styles.overview_totalViewsCountText}
                               >
@@ -390,12 +425,12 @@ const Overview = () => {
               <div className={styles.overview_campaignViews}>
                 <h5 className={styles.overview_campaignViewsHeading}>Views</h5>
                 <h4 className={styles.overview_campaignViewsCount}>
-                  {totalViews}
+                  {formatCount(totalViews)}
                 </h4>
                 <div className={styles.overview_pastDaysCount}>
                   <div className={styles.overview_viewsCounterIndicator}>
                     <p className={styles.overview_viewsCountInTotal}>
-                      {filterRange.value !== null ? totalIncViews : totalViews}
+                      {totalIncViews}
                     </p>
                     <Image
                       image={upArrowGreenIcon}
@@ -448,7 +483,9 @@ const Overview = () => {
                           setFilterRange(option);
                         }}
                       >
-                        {option.label}
+                        <p className={styles.overview_selectOption}>
+                          {option.label}
+                        </p>
                       </div>
                     ))}
                   </div>

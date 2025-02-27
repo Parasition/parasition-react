@@ -76,7 +76,7 @@ const CreateCampaign = () => {
   const [previewData, setPreviewData] = useState([
     {
       icon: playBlackIcon,
-      label: 'Total Videos',
+      label: 'Estimate Videos',
       count: '',
     },
     {
@@ -122,7 +122,7 @@ const CreateCampaign = () => {
       setPreviewData([
         {
           icon: playBlackIcon,
-          label: 'Total Videos',
+          label: 'Estimate Videos',
           count: `${videos[1]}`,
         },
         {
@@ -351,7 +351,7 @@ const CreateCampaign = () => {
           label={strings.campaignNamePlaceHolder}
           name="campaign name"
           value={name}
-          placeholder={'please enter campaign name'}
+          placeholder={'Please enter campaign name'}
           onChange={(e) => setName(e.target.value)}
           containerStyle={styles.createCampaign_inputContainer}
           inputLabelStyle={styles.createCampaign_inputLabel}

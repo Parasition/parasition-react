@@ -29,6 +29,7 @@
 }
 
 .createCampaign_subTitle {
+  font-family: 'HelveticaNeuelight';
   font-size: 22px;
   font-weight: 400;
   line-height: 26.25px;
@@ -47,6 +48,7 @@
   width: 100%;
 }
 .createCampaign_inputLabel {
+  font-family: 'HelveticaNeueRoman';
   font-size: 18px;
   font-weight: 400;
   line-height: 22px;
@@ -54,6 +56,7 @@
   color: var(--charcoal);
 }
 .createCampaign_inputLabel::placeholder {
+  font-family: 'HelveticaNeueRoman';
   font-weight: 400;
   font-size: 18px;
   line-height: 21.47px;
@@ -276,6 +279,7 @@
 }
 
 .ageRangeHeading {
+  font-family: 'HelveticaNeueRoman';
   font-size: 18px;
   font-weight: 400;
   line-height: 21.47px;
@@ -293,6 +297,7 @@
 
 .createCampaign_minRange,
 .createCampaign_maxRange {
+  font-family: 'HelveticaNeueRoman';
   display: flex;
   align-items: center;
   justify-content: center;
@@ -308,7 +313,9 @@
   color: var(--charcoal);
 }
 
-.createCampaign_separator {
+.createCampaign_separator,
+.createCampaign_label {
+  font-family: 'HelveticaNeueRoman';
   font-size: 18px;
   font-weight: 400;
   line-height: 21.47px;
@@ -332,6 +339,7 @@
 }
 
 .createCampaign_genderLabel {
+  font-family: 'HelveticaNeueRoman';
   font-size: 18px;
   font-weight: 400;
   line-height: 22px;
@@ -374,7 +382,7 @@
   border-radius: 10px;
   border: 2px solid var(--platinum);
   text-align: center;
-
+  font-family: 'HelveticaNeueRoman';
   font-size: 18px;
   font-weight: 400;
   line-height: 21.47px;
@@ -382,6 +390,7 @@
 }
 
 .createCampaign_gender {
+  font-family: 'HelveticaNeueRoman';
   font-size: 18px;
   font-weight: 400;
   line-height: 21.47px;
@@ -401,6 +410,7 @@
 }
 
 .createCampaign_toText {
+  font-family: 'HelveticaNeueRoman';
   font-size: 18px;
   font-weight: 400;
   line-height: 22px;
@@ -412,15 +422,6 @@
   flex-direction: column;
   gap: 32px;
 }
-
-.createCampaign_label {
-  font-size: 18px;
-  font-weight: 400;
-  line-height: 21.47px;
-  text-align: left;
-  color: var(--charcoal);
-}
-
 .createCampaign_poInfoInputs {
   display: flex;
   gap: 14px;

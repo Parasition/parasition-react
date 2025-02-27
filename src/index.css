@@ -64,6 +64,18 @@ body {
 
 /* Desc Font  */
 @font-face {
-  font-family: 'HelveticaNeueMedium';
+  font-family: 'HelveticaNeuelight';
   src: url('../src/assets/fonts/HelveticaNeueLight.otf');
+}
+@font-face {
+  font-family: 'HelveticaNeueRoman';
+  src: url('../src/assets/fonts/HelveticaNeueRoman.otf');
+}
+@font-face {
+  font-family: 'HelveticaNeueMedium';
+  src: url('../src/assets/fonts/HelveticaNeueMedium.otf');
+}
+@font-face {
+  font-family: 'HelveticaNeueBold';
+  src: url('../src/assets/fonts/HelveticaNeueBold.otf');
 }

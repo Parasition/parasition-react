@@ -62,7 +62,7 @@ const GraphView = (props) => {
           drawBorder: true,
         },
         ticks: {
-          display: true,
+          display: false,
           autoSkip: true,
           maxTicksLimit: 10,
           callback: function (value, index, values) {

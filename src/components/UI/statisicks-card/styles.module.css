@@ -19,8 +19,9 @@
 }
 
 .viewCampaign_statisticSubTitle {
+  font-family: 'HelveticaNeueBold';
   font-size: 40px;
-  font-weight: 500;
+  font-weight: 700;
   line-height: 48px;
   text-align: left;
   color: var(--black);
@@ -61,6 +62,7 @@
 }
 
 .viewCampaign_pastDays {
+  font-family: 'HelveticaNeueRoman';
   font-size: 13px;
   font-weight: 400;
   line-height: 16px;

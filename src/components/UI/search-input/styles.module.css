@@ -6,6 +6,7 @@
   gap: 19px;
 }
 .searchPlaces_titleText {
+  font-family: 'HelveticaNeueRoman';
   font-weight: 400;
   font-size: 18px;
   line-height: 21.47px;
@@ -33,6 +34,7 @@
   padding: 12px 14px;
 }
 .searchPlaces_tagValue {
+  font-family: 'HelveticaNeueRoman';
   font-weight: 400;
   font-size: 18px;
   line-height: 21.47px;
@@ -59,6 +61,8 @@
 }
 
 .searchPlaces_suggestionItem {
+  font-family: 'HelveticaNeueRoman';
+  font-size: 16px;
   padding: 10px;
   cursor: pointer;
   border-top: 1px solid var(--platinum);

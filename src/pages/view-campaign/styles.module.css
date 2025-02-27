@@ -26,7 +26,7 @@
 .viewCampaign_header {
   display: flex;
   flex-direction: column;
-  gap: 24px;
+  gap: 16px;
 }
 
 .viewCampaign_headerTitle {
@@ -38,6 +38,7 @@
 }
 
 .viewCampaign_headerSubTitle {
+  font-family: 'HelveticaNeuelight';
   font-size: 18px;
   font-weight: 400;
   line-height: 21.47px;
@@ -70,6 +71,7 @@
 }
 
 .viewCampaign_dueDate {
+  font-family: 'HelveticaNeueBold';
   font-size: 20px;
   font-weight: 700;
   line-height: 28px;
@@ -78,6 +80,7 @@
 }
 
 .viewCampaign_startDate {
+  font-family: 'HelveticaNeueRoman';
   font-size: 16px;
   font-weight: 400;
   line-height: 28px;
@@ -133,6 +136,7 @@
 }
 
 .viewCampaign_audioTrackSubTitle {
+  font-family: 'HelveticaNeueRoman';
   font-size: 18px;
   font-weight: 400;
   line-height: 21.47px;

@@ -6,6 +6,7 @@
   position: relative;
 }
 .inputLabelStyle {
+  font-family: 'HelveticaNeueRoman';
   color: var(--charcoal);
   font-size: 18px;
   font-weight: 400;
@@ -33,6 +34,7 @@
 
 .inputStyle::placeholder {
   color: var(--smoke);
+  font-family: 'HelveticaNeueRoman';
 }
 .inputStyle:active,
 .inputStyle:focus {

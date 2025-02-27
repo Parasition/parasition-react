@@ -41,6 +41,7 @@
 }
 
 .overview_subTitle {
+  font-family: 'HelveticaNeuelight';
   font-size: 18px;
   font-weight: 400;
   line-height: 22px;
@@ -102,6 +103,7 @@
   line-height: 28.08px;
   text-align: left;
   color: var(--black);
+  font-family: 'HelveticaNeueRoman';
 }
 
 .overview_viewsDetails {
@@ -111,6 +113,7 @@
 }
 
 .overview_totalViews {
+  font-family: 'HelveticaNeueBold';
   font-size: 20px;
   font-weight: 700;
   line-height: 26px;
@@ -127,16 +130,29 @@
   display: flex;
   flex-direction: row;
   align-items: center;
+  justify-content: center;
   padding: 4px;
   background-color: var(--mistyGreen);
   border-radius: 7px;
+  gap: 2px;
 }
 .overview_totalViewsCountText {
+  display: flex;
+  align-items: center;
   font-size: 20px;
   font-weight: 700;
   line-height: 26px;
   text-align: left;
-  color: var(--seaFoamGreen);
+  color: var(--emeraldGreen);
+  padding: 0;
+}
+.overview_totalViewsCount span {
+  display: flex;
+  align-items: center;
+  font-size: 20px;
+  font-weight: 700;
+  text-align: left;
+  color: var(--emeraldGreen);
 }
 /* 
 .overview_totalViewsCount {
@@ -151,7 +167,9 @@
   align-self: center;
 } */
 
-.overview_totalViewLastDaysLabel {
+.overview_totalViewLastDaysLabel,
+.overview_pastDaysText {
+  font-family: 'HelveticaNeueRoman';
   font-size: 18px;
   font-weight: 500;
   line-height: 26px;
@@ -169,7 +187,6 @@
   border: 3px solid var(--ash);
   background-color: var(--white);
   white-space: nowrap;
-
   font-size: 18px;
   font-weight: 500;
   line-height: 21.98px;
@@ -199,6 +216,7 @@
 }
 
 .overview_allCampaignsHeading {
+  font-family: 'HelveticaNeueMedium';
   font-size: 23px;
   font-weight: 500;
   line-height: 28.08px;
@@ -223,6 +241,7 @@
 }
 
 .overview_campaignViewsHeading {
+  font-family: 'HelveticaNeueMedium';
   font-size: 18px;
   font-weight: 500;
   line-height: 21.98px;
@@ -231,6 +250,7 @@
 }
 
 .overview_campaignViewsCount {
+  font-family: 'HelveticaNeueBold';
   font-size: 40px;
   font-weight: 500;
   line-height: 48.84px;
@@ -242,14 +262,6 @@
   display: flex;
   gap: 10px;
   align-items: center;
-}
-
-.overview_pastDaysText {
-  font-size: 13px;
-  font-weight: 400;
-  line-height: 15.51px;
-  text-align: left;
-  color: var(--charcoal);
 }
 
 .overview_daysDropDown {
@@ -265,6 +277,7 @@
 }
 
 .overview_selectOption {
+  font-family: 'HelveticaNeuelight';
   font-size: 18px;
   font-weight: 400;
   line-height: 22px;
@@ -325,7 +338,7 @@
   font-weight: 500;
   line-height: 21.98px;
   text-align: left;
-  color: var(--seaFoamGreen);
+  color: var(--emeraldGreen);
 }
 
 .overview_upArrowIcon {

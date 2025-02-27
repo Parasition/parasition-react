@@ -5,6 +5,7 @@
 }
 
 .multiValueInput_label {
+  font-family: 'HelveticaNeueRoman';
   font-size: 18px;
   font-weight: 400;
   line-height: 22px;
@@ -59,6 +60,9 @@
 .multiValueInput_closeGrayFit {
   object-fit: contain;
 }
+.multiValueInput_tagWrapper input {
+  font-family: 'HelveticaNeuelight';
+}
 
 .inputField {
   min-height: 58px;
@@ -71,6 +75,7 @@
 }
 
 .inputField::placeholder {
+  font-family: 'HelveticaNeuelight';
   font-size: 18px;
   font-weight: 400;
   line-height: 21.47px;

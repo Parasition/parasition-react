@@ -23,7 +23,7 @@ const StatisticCard = ({ title, totalCount, count, pastLabel }) => {
               altText={strings.upArrowGreenIcon}
             />
           </div>
-          <p className={styles.viewCampaign_pastDays}>{pastLabel}</p>
+          <p className={styles.viewCampaign_pastDays}>({pastLabel})</p>
         </div>
       </div>
     </div>

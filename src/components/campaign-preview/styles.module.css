@@ -24,18 +24,22 @@
 }
 
 .campaignPreview_campaignNameHeading {
+  font-family: 'HelveticaNeueBold';
   font-size: 32px;
   font-weight: 700;
   line-height: 39.07px;
   color: var(--black);
+  word-break: break-all;
 }
 
 .campaignPreview_campaignDescription {
+  font-family: 'HelveticaNeueLight';
   font-size: 18px;
   font-weight: 400;
   line-height: 22px;
   text-align: left;
   color: var(--charcoal);
+  word-break: break-all;
 }
 
 .campaignPreview_campaignStatistics {
@@ -89,6 +93,7 @@
 }
 
 .campaignPreview_budgetListItem {
+  font-family: 'HelveticaNeueLight';
   font-size: 18px;
   font-weight: 400;
   line-height: 22px;
@@ -102,6 +107,7 @@
 }
 
 .campaignPreview_budgetListItemDesc {
+  font-family: 'HelveticaNeueMedium';
   font-size: 23px;
   font-weight: 500;
   line-height: 28.08px;

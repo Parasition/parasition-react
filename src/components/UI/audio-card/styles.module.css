@@ -32,6 +32,7 @@
 }
 
 .createCampaign_audioTrackTitle {
+  font-family: 'HelveticaNeueRoman';
   font-size: 18px;
   font-weight: 400;
   line-height: 22px;
@@ -45,6 +46,7 @@
 .createCampaign_audioTrackSubTitle,
 .createCampaign_audioTrackDuration,
 .createCampaign_audioTrackViewers {
+  font-family: 'HelveticaNeueRoman';
   font-size: 16px;
   font-weight: 400;
   line-height: 19.09px;
@@ -61,6 +63,7 @@
 }
 
 .createCampaign_viewInTikTok {
+  font-family: 'HelveticaNeueRoman';
   font-size: 16px;
   font-weight: 400;
   line-height: 19.09px;

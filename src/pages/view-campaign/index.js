@@ -64,14 +64,26 @@ const ViewCampaign = () => {
 
   // Initialize the total stats and stats increase
   useEffect(() => {
-    if (!campaignDetails?.videos) return;
+    if (!campaignDetails?.creator_videos) return;
 
-    const aggregatedStats = campaignDetails.videos.reduce(
+    const aggregatedStats = campaignDetails.creator_videos.reduce(
       (acc, video) => {
-        acc.views += video.stats?.view_count || 0;
-        acc.likes += video.stats?.like_count || 0;
-        acc.shares += video.stats?.share_count || 0;
-        acc.comments += video.stats?.comment_count || 0;
+        if (!video.video_stats || video.video_stats.length === 0) return acc;
+
+        const latestStats = video.video_stats.reduce((latest, stat) => {
+          return !latest ||
+            new Date(stat.stats_date) > new Date(latest.stats_date)
+            ? stat
+            : latest;
+        }, null);
+
+        if (latestStats?.stats) {
+          acc.views += latestStats.stats.view_count || 0;
+          acc.likes += latestStats.stats.like_count || 0;
+          acc.shares += latestStats.stats.share_count || 0;
+          acc.comments += latestStats.stats.comment_count || 0;
+        }
+
         return acc;
       },
       { views: 0, likes: 0, shares: 0, comments: 0 }
@@ -81,21 +93,30 @@ const ViewCampaign = () => {
     let increasedLikeCount = 0;
     let increasedShareCount = 0;
     let increasedCommentCount = 0;
-    const aggregatedStats2 = campaignDetails.videos.map((video, index) => {
-      const filterDate = moment().subtract(3, 'days').format('YYYY-MM-DD');
-      let data = video?.creator_videos_stats.filter((videoStats) => {
-        return !moment(videoStats.stats_date).isAfter(filterDate);
-      });
+    const aggregatedStats2 = campaignDetails.creator_videos.map(
+      (video, index) => {
+        const filterDate = moment().subtract(3, 'days').format('YYYY-MM-DD');
+        let data = video?.video_stats.filter((videoStats) => {
+          return moment(videoStats.stats_date).isSameOrAfter(filterDate);
+        });
 
-      increasedViewCount +=
-        video.stats?.view_count - (data[0]?.stats?.view_count || 0);
-      increasedLikeCount +=
-        video.stats?.like_count - (data[0]?.stats?.like_count || 0);
-      increasedShareCount +=
-        video.stats?.share_count - (data[0]?.stats?.share_count || 0);
-      increasedCommentCount +=
-        video.stats?.comment_count - (data[0]?.stats?.comment_count || 0);
-    });
+        if (data.length === 0) {
+          increasedViewCount += 0;
+          increasedLikeCount += 0;
+          increasedShareCount += 0;
+          increasedCommentCount += 0;
+        }
+
+        increasedViewCount +=
+          video.stats?.view_count - (data[0]?.stats?.view_count || 0);
+        increasedLikeCount +=
+          video.stats?.like_count - (data[0]?.stats?.like_count || 0);
+        increasedShareCount +=
+          video.stats?.share_count - (data[0]?.stats?.share_count || 0);
+        increasedCommentCount +=
+          video.stats?.comment_count - (data[0]?.stats?.comment_count || 0);
+      }
+    );
     setStatsIncrease({
       views: increasedViewCount,
       shares: increasedShareCount,
@@ -111,7 +132,8 @@ const ViewCampaign = () => {
       setIsLoading(true);
       const response = await getCompaignDetailsApi(campaign.campaign_id);
       setCampaignDetails(response.data.data);
-      setSelectedReel(response.data.data?.videos[0]);
+      console.log('darataa', response.data.data);
+      setSelectedReel(response.data.data?.creator_videos[0]);
       setIsLoading(false);
     } catch (error) {
       showToast.error(error.message);
@@ -119,27 +141,6 @@ const ViewCampaign = () => {
       console.error('Error while fetching campaigns details', error);
     }
   };
-
-  // const handleDiffeDays = (date) => {
-  //   if (date) {
-  //     let now = moment();
-  //     let createdMoment = moment(date);
-
-  //     let diffDays = now.diff(createdMoment, 'days');
-  //     let diffMonths = now.diff(createdMoment, 'months');
-  //     let diffYears = now.diff(createdMoment, 'years');
-
-  //     if (diffDays <= 7) {
-  //       return diffDays === 0 ? 'today' : `In the last ${diffDays} days`;
-  //     } else if (diffMonths === 0) {
-  //       return 'In the last month';
-  //     } else if (diffMonths > 0 && diffYears === 0) {
-  //       return `In the last ${diffMonths} months`;
-  //     } else {
-  //       return `In the last ${diffYears} years`;
-  //     }
-  //   }
-  // };
 
   // handle copy link
   const handleCopyLink = (text, type) => {
@@ -163,18 +164,25 @@ const ViewCampaign = () => {
       });
   };
 
+  // Function to format counts
+  const formatCount = (count) => {
+    if (count >= 1_000_000) return `${Math.floor(count / 100_000) / 10}M`;
+    if (count >= 1_000) return `${Math.floor(count / 100) / 10}K`;
+    return count.toString();
+  };
+
   // RENDER METHODS
 
   const renderBudgetSpend = () => {
     return (
       <div className={styles.viewCampaign_headerAndBudgetSpend}>
         <div className={styles.viewCampaign_header}>
-          <h1 className={styles.viewCampaign_headerTitle}>
+          <p className={styles.viewCampaign_headerTitle}>
             {campaignDetails?.name || campaignDetails?.objective}
-          </h1>
-          <h4 className={styles.viewCampaign_headerSubTitle}>
+          </p>
+          <p className={styles.viewCampaign_headerSubTitle}>
             {campaignDetails?.description}
-          </h4>
+          </p>
         </div>
         <div className={styles.viewCampaign_budgetSpend}>
           <BudgetIndicator
@@ -183,10 +191,10 @@ const ViewCampaign = () => {
           />
           <div className={styles.viewCampaign_campaignDetails}>
             <div className={styles.viewCampaign_dueAndStartDate}>
-              <h6 className={styles.viewCampaign_dueDate}>
+              <p className={styles.viewCampaign_dueDate}>
                 {strings.campaignDue}{' '}
                 {moment(campaignDetails?.end_date).format('MMM D')}
-              </h6>
+              </p>
               <label className={styles.viewCampaign_startDate}>
                 {strings.campaignStart}{' '}
                 {moment(campaignDetails?.start_date).format('MMM D')}
@@ -226,12 +234,12 @@ const ViewCampaign = () => {
           customImageContainerStyle={styles.viewCampaign_audioImg}
         />
         <div className={styles.viewCampaign_audioTrackTitleAndDesc}>
-          <h5 className={styles.viewCampaign_audioTrackTitle}>
+          <p className={styles.viewCampaign_audioTrackTitle}>
             {campaignDetails?.objective}
-          </h5>
-          <h6 className={styles.viewCampaign_audioTrackSubTitle}>
+          </p>
+          <p className={styles.viewCampaign_audioTrackSubTitle}>
             {campaignDetails?.description}
-          </h6>
+          </p>
         </div>
       </div>
     );
@@ -242,26 +250,26 @@ const ViewCampaign = () => {
       <div className={styles.viewCampaign_statisticListItems}>
         <StatisticCard
           title={'Views'}
-          totalCount={totalStats.views}
-          count={statsIncrease.views}
+          totalCount={formatCount(totalStats.views)}
+          count={formatCount(statsIncrease.views)}
           pastLabel={'last 3 days'}
         />
         <StatisticCard
           title={'Likes'}
-          totalCount={totalStats.likes}
-          count={statsIncrease.likes}
+          totalCount={formatCount(totalStats.likes)}
+          count={formatCount(statsIncrease.likes)}
           pastLabel={'last 3 days'}
         />
         <StatisticCard
           title={'Shares'}
-          totalCount={totalStats.shares}
-          count={statsIncrease.shares}
+          totalCount={formatCount(totalStats.shares)}
+          count={formatCount(statsIncrease.shares)}
           pastLabel={'last 3 days'}
         />
         <StatisticCard
           title={'Comments'}
-          totalCount={totalStats.comments}
-          count={statsIncrease.comments}
+          totalCount={formatCount(totalStats.comments)}
+          count={formatCount(statsIncrease.comments)}
           pastLabel={'last 3 days'}
         />
       </div>
@@ -274,15 +282,15 @@ const ViewCampaign = () => {
         <div className={styles.viewCampaign_topVideoHeader}>
           {strings.topVideos}
         </div>
-        {campaignDetails?.videos?.length > 0 ? (
+        {campaignDetails?.creator_videos?.length > 0 ? (
           <React.Fragment>
             <div className={styles.viewCampaign_videoGallery}>
-              {campaignDetails?.videos?.map((reelData, index) => {
+              {campaignDetails?.creator_videos?.map((reelData, index) => {
                 return (
                   <ReelCard
                     key={index}
                     src={reelData.url}
-                    views={reelData?.stats?.view_count}
+                    views={formatCount(reelData?.stats?.view_count)}
                     selectedReel={
                       selectedReel &&
                       selectedReel.stats?.view_count ===

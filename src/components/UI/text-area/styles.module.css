@@ -8,6 +8,7 @@
 .textArea_errorMsg,
 .textArea_input,
 .textArea_input::placeholder {
+  font-family: 'HelveticaNeueRoman';
   font-size: 18px;
   font-weight: 400;
   line-height: 22px;
@@ -17,6 +18,7 @@
 
 .textArea_input::placeholder {
   color: var(--lightGray);
+  font-family: 'HelveticaNeueRoman';
 }
 
 .textArea_input {
