@@ -49,3 +49,4 @@ export { default as privacyPolicyWhiteIcon } from 'assets/images/privacy-policy-
 
 // Breif Generator
 export { default as clockArrowIcon } from 'assets/images/clock-arrow-circlepath-icon.svg';
+export { default as logoutIcon } from 'assets/images/logout-icon.svg';

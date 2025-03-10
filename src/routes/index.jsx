@@ -6,6 +6,7 @@ import { Constants } from 'utils/constants';
 import Layout from 'layout';
 import PublicRoute from './publicRoute';
 import ProtectedRoute from './protectedRoute';
+import FallbacUi from 'components/fallback-ui';
 
 const CreateCampaign = lazy(() => import('pages/create-campaign'));
 const OverView = lazy(() => import('pages/overview'));
@@ -59,7 +60,7 @@ const AppRoutes = () => {
           element: <EventCampaign />,
         },
         {
-          path: routeNames.viewCampaign,
+          path: `${routeNames.viewCampaign}/:id`,
           element: <ViewCampaign />,
         },
         {
@@ -86,7 +87,7 @@ const AppRoutes = () => {
     },
   ]);
 
-  return <Suspense fallback="Loading...">{routes}</Suspense>;
+  return <Suspense fallback={<FallbacUi />} >{routes}</Suspense>;
 };
 
 export { AppRoutes };

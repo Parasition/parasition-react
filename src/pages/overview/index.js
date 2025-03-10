@@ -230,7 +230,7 @@ const Overview = () => {
         increasedViewCount += latestStats?.stats?.view_count || 0;
       }
     });
-    return formatCount(increasedViewCount) || 0;
+    return formatCount(increasedViewCount || 0);
   };
 
   // calculate total view of each campaign
@@ -370,7 +370,11 @@ const Overview = () => {
                           <div className={styles.overview_totalViewPastDays}>
                             <div className={styles.overview_totalViewsCount}>
                               <span>
-                                {formatViewsCount(campaign) > 0 ? '+' : ''}
+                                {console.log(
+                                  'formatViewsCount(campaign)',
+                                  formatViewsCount(campaign)
+                                )}
+                                {formatViewsCount(campaign) === '0' ? '' : '+'}
                               </span>
                               <p
                                 className={styles.overview_totalViewsCountText}
@@ -394,12 +398,7 @@ const Overview = () => {
                     <Button
                       title={strings.viewCampaign}
                       onClick={() =>
-                        navigate(routeNames.viewCampaign, {
-                          state: {
-                            campaign_id: campaign?._id,
-                            campaign_code: campaign?.campaign_code,
-                          },
-                        })
+                        navigate(`${routeNames.viewCampaign}/${campaign._id}`)
                       }
                       classname={styles.overview_campaignBtn}
                     />

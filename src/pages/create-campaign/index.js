@@ -29,8 +29,8 @@ import AudioCard from 'components/UI/audio-card';
 import Modal from 'components/UI/modal';
 import moment from 'moment';
 import { useToastHook } from 'hooks/usetoasthook';
-import styles from './styles.module.css';
 import BreifGenerator from 'components/breif-generator';
+import styles from './styles.module.css';
 
 const CreateCampaign = () => {
   // CONSTANTS

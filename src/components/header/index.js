@@ -1,6 +1,6 @@
 import React from 'react';
 import { Image } from 'components/UI/image';
-import { parasitionLogo, warnerSwedenIcon } from 'resources/images';
+import { logoutIcon, parasitionLogo, warnerSwedenIcon } from 'resources/images';
 import { Constants } from 'utils/constants';
 import { Button } from 'components/UI/button';
 import { useLocation, useNavigate } from 'react-router-dom';
@@ -14,6 +14,13 @@ const Header = () => {
   // ROUTING
   const navigate = useNavigate();
   const location = useLocation();
+
+  const handleLogout = () => {
+    localStorage.removeItem('accessToken');
+    localStorage.removeItem('loggedIn');
+    localStorage.removeItem('userData');
+    navigate(routeNames.login);
+  };
 
   const renderLogoAndMenu = () => {
     return (
@@ -55,10 +62,24 @@ const Header = () => {
     );
   };
 
+  const renderLogutBtn = () => {
+    return (
+      <Button
+        onClick={() => handleLogout()}
+        classname={styles.header_logoutBtn}
+        icon={logoutIcon}
+        iconAltText="logout"
+      />
+    );
+  };
+
   return (
     <header className={styles.header_container}>
       {renderLogoAndMenu()}
-      {renderWarnerSwedenBtn()}
+      <div className={styles.header_subContainer}>
+        {renderWarnerSwedenBtn()}
+        {renderLogutBtn()}
+      </div>
     </header>
   );
 };

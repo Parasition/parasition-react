@@ -12,19 +12,20 @@ import { BudgetIndicator } from 'components/budgetindicator';
 import { Button } from 'components/UI/button';
 import IndividualReel from 'components/individualreel';
 import { Constants } from 'utils/constants';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate, useParams } from 'react-router-dom';
 import { useToastHook } from 'hooks/usetoasthook';
 import strings from 'resources/strings/eng.json';
 import moment from 'moment';
 import { getCompaignDetailsApi } from 'networking/apis/compaign';
 import StatisticCard from 'components/UI/statisicks-card';
 import { Loader } from 'components/UI/loader';
-import styles from './styles.module.css';
 import ResultsCard from 'components/UI/results-card';
+import styles from './styles.module.css';
 
 const ViewCampaign = () => {
   const location = useLocation();
-  const campaign = location.state || null;
+  const { id } = useParams();
+  // const campaign = location.state || null;
 
   // HOOKS
 
@@ -60,7 +61,7 @@ const ViewCampaign = () => {
   useEffect(() => {
     window.scrollTo(0, 0);
     getCampaignDetails();
-  }, [campaign]);
+  }, [id]);
 
   // Initialize the total stats and stats increase
   useEffect(() => {
@@ -130,9 +131,8 @@ const ViewCampaign = () => {
   const getCampaignDetails = async () => {
     try {
       setIsLoading(true);
-      const response = await getCompaignDetailsApi(campaign.campaign_id);
+      const response = await getCompaignDetailsApi(id);
       setCampaignDetails(response.data.data);
-      console.log('darataa', response.data.data);
       setSelectedReel(response.data.data?.creator_videos[0]);
       setIsLoading(false);
     } catch (error) {

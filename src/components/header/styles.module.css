@@ -52,3 +52,13 @@
   white-space: nowrap;
   padding: 14px 18px;
 }
+.header_subContainer {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 24px;
+}
+.header_logoutBtn {
+  background-color: transparent;
+  padding: 8px 8px;
+}

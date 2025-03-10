@@ -1,0 +1,17 @@
+.fallback_container {
+  width: 100%;
+  height: 100vh;
+  background-color: var(--frostWhite);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: auto;
+}
+.fallback_iconWrapper {
+  width: 120px;
+  height: 120px;
+  flex-shrink: 0;
+}
+.fallback_icon {
+  object-fit: contain;
+}
