@@ -8,3 +8,8 @@ export const registerApi = async (data) =>
 // LOGIN API
 export const loginApi = async (data) =>
   Promise.resolve(axiosInstance.post(endPoints.login, data));
+
+export const getUserDetailsApi = async (id) =>
+  Promise.resolve(
+    axiosInstance.get(endPoints.getUserDetails.replace('{id}', id))
+  );

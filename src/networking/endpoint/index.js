@@ -8,3 +8,5 @@ export const getCompaignDetails = '/campaign/get';
 export const extendBudget = '/campaign/extend';
 
 export const getAudioData = '/audio/info';
+
+export const getUserDetails = '/user/get/{id}';

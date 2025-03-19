@@ -63,6 +63,7 @@ const Input = (props) => {
           onKeyDown={onKeyDown}
           ref={inputReference}
           disabled={disabled}
+          autoComplete="off"
           {...rest}
         />
         {rightIcon && (

@@ -1,4 +1,4 @@
-import { loginApi, registerApi } from 'networking/apis/user';
+import { getUserDetailsApi, loginApi, registerApi } from 'networking/apis/user';
 import React, {
   createContext,
   useCallback,
@@ -46,12 +46,17 @@ const AuthProvider = ({ children }) => {
     try {
       const loggedIn = JSON.parse(localStorage.getItem('loggedIn')) || false;
       const token = localStorage.getItem('accessToken');
-      // Ensure loggedIn and token are present
       if (loggedIn && token && isTokenExpired(token)) {
         setAxiosSession(token);
         const tokenData = await getDataFromToken(token);
-        setUserData(tokenData);
-        setIsLoggedIn(true);
+        try {
+          let userResponse = await getUserDetailsApi(tokenData?.id);
+          console.log('rees', userResponse.data.data);
+          setUserData(userResponse.data.data);
+          setIsLoggedIn(true);
+        } catch (error) {
+          console.log('error', error);
+        }
       } else {
         logOut();
       }

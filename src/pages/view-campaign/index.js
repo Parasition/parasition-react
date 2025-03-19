@@ -3,9 +3,6 @@ import { Image } from 'components/UI/image';
 import {
   defaultAudioPreviewIcon,
   downChevronBlackIcon,
-  dummyProfileIcon,
-  upArrowGreenIcon,
-  upArrowWhiteIcon,
 } from 'resources/images';
 import ReelCard from 'components/reel';
 import { BudgetIndicator } from 'components/budgetindicator';
@@ -18,8 +15,8 @@ import strings from 'resources/strings/eng.json';
 import moment from 'moment';
 import { getCompaignDetailsApi } from 'networking/apis/compaign';
 import StatisticCard from 'components/UI/statisicks-card';
-import { Loader } from 'components/UI/loader';
 import ResultsCard from 'components/UI/results-card';
+import FallbacUi from 'components/fallback-ui';
 import styles from './styles.module.css';
 
 const ViewCampaign = () => {
@@ -187,7 +184,7 @@ const ViewCampaign = () => {
         <div className={styles.viewCampaign_budgetSpend}>
           <BudgetIndicator
             totalAmount={campaignDetails?.budget?.total}
-            spentAmount={campaignDetails?.budget?.starting_fund}
+            spentAmount={campaignDetails?.budget?.starting_fund || 0}
           />
           <div className={styles.viewCampaign_campaignDetails}>
             <div className={styles.viewCampaign_dueAndStartDate}>
@@ -355,12 +352,17 @@ const ViewCampaign = () => {
 
   return (
     <div className={styles.viewCampaign_container}>
-      {isLoading && <Loader />}
-      {renderBudgetSpend()}
-      <div className={styles.viewCampaign_subContainer}>
-        {renderStatisticsAndGallery()}
-        {selectedReel && renderIndividualVideo()}
-      </div>
+      {isLoading ? (
+        <FallbacUi />
+      ) : (
+        <>
+          {renderBudgetSpend()}
+          <div className={styles.viewCampaign_subContainer}>
+            {renderStatisticsAndGallery()}
+            {selectedReel && renderIndividualVideo()}
+          </div>
+        </>
+      )}
     </div>
   );
 };

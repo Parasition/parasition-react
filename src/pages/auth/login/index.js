@@ -89,6 +89,7 @@ const Login = () => {
               setErrorMsg({ ...errorMsg, email: '' });
               setAuthError('');
             }}
+            autoComplete="off"
             hasError={errorMsg.email}
             containerStyle={styles.email_input_container}
           />
@@ -102,6 +103,7 @@ const Login = () => {
               setErrorMsg({ ...errorMsg, password: '' });
               setAuthError('');
             }}
+            autoComplete="new password"
             hasError={errorMsg.password}
             containerStyle={styles.password_input_container}
           />
@@ -117,12 +119,12 @@ const Login = () => {
         <div className={styles.forgot_passwordandLoginWrapper}>
           <p className={styles.forgot_passwordText}>Forgot password?</p>
           <p className={styles.forgot_passwordText}>Can’t Log In </p>
-          <p
+          {/* <p
             className={styles.forgot_passwordText}
             onClick={() => navigate(routeNames.signUp)}
           >
             Sign Up
-          </p>
+          </p> */}
         </div>
       </div>
     );

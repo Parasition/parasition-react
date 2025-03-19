@@ -4,12 +4,14 @@ import { logoutIcon, parasitionLogo, warnerSwedenIcon } from 'resources/images';
 import { Constants } from 'utils/constants';
 import { Button } from 'components/UI/button';
 import { useLocation, useNavigate } from 'react-router-dom';
+import { useAuthContext } from 'hooks/useauthcontext';
 import styles from './styles.module.css';
 
 const Header = () => {
   // CONSTANTS
 
   const { routeNames, menuData } = Constants();
+  const { userData } = useAuthContext();
 
   // ROUTING
   const navigate = useNavigate();
@@ -50,15 +52,24 @@ const Header = () => {
     );
   };
 
-  const renderWarnerSwedenBtn = () => {
+  const renderUserSection = () => {
     return (
-      <Button
-        title="Warner Sweden "
-        onClick={() => {}}
-        classname={styles.header_warnerSwedenBtn}
-        icon={warnerSwedenIcon}
-        iconAltText="Warner Sweden "
-      />
+      <div className={styles.header_userDetailsWrapper}>
+        <Image
+          image={userData?.company_logo || warnerSwedenIcon}
+          altText="logo"
+          customImageContainerStyle={styles.header_userLogoWrapper}
+          customImageStyle={styles.header_userlogo}
+        />
+        <p className={styles.header_userTitle}>{userData?.name}</p>
+      </div>
+      // <Button
+      //   title="Warner Sweden"
+      //   onClick={() => {}}
+      //   classname={styles.header_warnerSwedenBtn}
+      //   icon={userData?.company_logo || warnerSwedenIcon}
+      //   iconAltText="Warner Sweden "
+      // />
     );
   };
 
@@ -77,7 +88,7 @@ const Header = () => {
     <header className={styles.header_container}>
       {renderLogoAndMenu()}
       <div className={styles.header_subContainer}>
-        {renderWarnerSwedenBtn()}
+        {renderUserSection()}
         {renderLogutBtn()}
       </div>
     </header>

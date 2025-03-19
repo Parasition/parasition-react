@@ -7,7 +7,6 @@ import Layout from 'layout';
 import PublicRoute from './publicRoute';
 import ProtectedRoute from './protectedRoute';
 import FallbacUi from 'components/fallback-ui';
-
 const CreateCampaign = lazy(() => import('pages/create-campaign'));
 const OverView = lazy(() => import('pages/overview'));
 const EventCampaign = lazy(() => import('pages/event-campaign'));
@@ -18,6 +17,7 @@ const PrivacyPolicy = lazy(() => import('pages/privacy-policy'));
 const Login = lazy(() => import('pages/auth/login'));
 const SignUp = lazy(() => import('pages/auth/sign-up'));
 const NotFoundPage = lazy(() => import('pages/pagenotfound'));
+const BreifGenerator = lazy(() =>import('pages/tools'));
 
 const AppRoutes = () => {
   const { routeNames } = Constants();
@@ -31,14 +31,14 @@ const AppRoutes = () => {
         </PublicRoute>
       ),
     },
-    {
-      path: routeNames.signUp,
-      element: (
-        <PublicRoute>
-          <SignUp />
-        </PublicRoute>
-      ),
-    },
+    // {
+    //   path: routeNames.signUp,
+    //   element: (
+    //     <PublicRoute>
+    //       <SignUp />
+    //     </PublicRoute>
+    //   ),
+    // },
     {
       path: '',
       element: (
@@ -66,6 +66,10 @@ const AppRoutes = () => {
         {
           path: routeNames.extendCampaign,
           element: <ExtendCampaign />,
+        },
+        {
+          path: routeNames.tools,
+          element: <BreifGenerator />,
         },
         {
           path: routeNames.termsAndConditions,

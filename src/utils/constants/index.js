@@ -28,6 +28,7 @@ const Constants = () => {
     privacyPolicy: '/privacypolicy',
     termsAndConditions: '/terms&conditions',
     breifGenerator: '/briefgenerator',
+    tools: '/tools',
   };
 
   // HEADER MENU DATA
@@ -37,13 +38,13 @@ const Constants = () => {
       route: routeNames.createCampaign,
     },
     {
+      name: 'Tools ',
+      route: routeNames.tools,
+    },
+    {
       name: 'Overview',
       route: routeNames.overView,
     },
-    // {
-    //   name: 'Brief Generator ',
-    //   route: routeNames.breifGenerator,
-    // },
 
     // TODO: LATER ADD THIS ROUTE
     // {

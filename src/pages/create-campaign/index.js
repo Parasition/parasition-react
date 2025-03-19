@@ -30,12 +30,16 @@ import Modal from 'components/UI/modal';
 import moment from 'moment';
 import { useToastHook } from 'hooks/usetoasthook';
 import BreifGenerator from 'components/breif-generator';
+import { useAuthContext } from 'hooks/useauthcontext';
 import styles from './styles.module.css';
 
 const CreateCampaign = () => {
   // CONSTANTS
 
   const { routeNames, enums, genderStatisticsData } = Constants();
+
+  // CONTEXTS
+  const { userData } = useAuthContext();
 
   // ROUTING
   const navigate = useNavigate();
@@ -90,6 +94,8 @@ const CreateCampaign = () => {
       count: '',
     },
   ]);
+
+  console.log('user', userData);
 
   // BUDGET RANGE DATA
   const budgetData = {
@@ -385,10 +391,6 @@ const CreateCampaign = () => {
       <Accordion
         title={strings.brief}
         showAccordionContent={accordions.brief}
-        btnTitle={'Add with AI'}
-        onBtnAction={() => {
-          setShowModal(true);
-        }}
         onPressChevRonIcon={() => toggleAccordion(enums.BRIEF)}
         onPressAccordionHeader={() => toggleAccordion(enums.BRIEF)}
         accordionContentStyle={styles.campaign_briefAccordion}
@@ -662,8 +664,12 @@ const CreateCampaign = () => {
             : ''
         }
         budget={budget && `${budget} USD`}
-        estimatedCpm="$15 (cost per 1000  views) "
-        estimatedCpv="$50 (cost per video) "
+        estimatedCpm={`${
+          '$' + userData?.cpm_price || 'NA'
+        } (cost per 1000  views)`}
+        estimatedCpv={`${
+          '$' + userData?.price_per_video || 'NA'
+        } (cost per video)`}
         onPressBtn={() => {
           handleLaunchCampaign();
         }}
@@ -673,27 +679,12 @@ const CreateCampaign = () => {
     );
   };
 
-  const renderBriefAIModal = () => {
-    return (
-      <Modal
-        show={showModal}
-        handleClickOutSide={() => setShowModal(false)}
-        showOverlay={true}
-        overlayStyle={styles.overLayStyle}
-        containerStyle={styles.createCampaign_breifModal}
-      >
-        <BreifGenerator onClose={() => setShowModal(false)} />
-      </Modal>
-    );
-  };
-
   return (
     <div className={styles.createCampaign_container}>
       {renderCreateCampaignHeader()}
       <div className={styles.createCampaign_subContainer}>
         {renderCampaignCreation()}
         {renderCampaignPreview()}
-        {renderBriefAIModal()}
       </div>
     </div>
   );

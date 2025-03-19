@@ -114,7 +114,7 @@ const ResultsCard = ({
               icon={upArrowWhiteIcon}
               icoAltText={strings.upArrowWhiteIcon}
               onClick={handleCopyBoostLink}
-              startIconStyle={styles.resultsCard_upArrowIcon}
+              buttonIconStyle={styles.resultsCard_upArrowIcon}
               classname={styles.resultsCard_boostVideoBtn}
             />
           )}

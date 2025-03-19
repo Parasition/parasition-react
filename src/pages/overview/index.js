@@ -8,14 +8,14 @@ import {
   upArrowGreenIcon,
 } from 'resources/images';
 import GraphView from 'components/graph';
-import { data, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { Constants } from 'utils/constants';
 import PopOver from 'components/UI/popover';
 import strings from 'resources/strings/eng.json';
 import { getCampaignsListApi } from 'networking/apis/compaign';
 import moment from 'moment';
 import { useToastHook } from 'hooks/usetoasthook';
-import { Loader } from 'components/UI/loader';
+import FallbacUi from 'components/fallback-ui';
 import styles from './styles.module.css';
 
 const Overview = () => {
@@ -54,7 +54,6 @@ const Overview = () => {
       setIsLoading(true);
       const response = await getCampaignsListApi();
       setCampaignsList(response.data.data);
-      console.log('Campaigns list', response.data.data);
       setIsLoading(false);
     } catch (error) {
       showToast.error(error.message);
@@ -370,10 +369,6 @@ const Overview = () => {
                           <div className={styles.overview_totalViewPastDays}>
                             <div className={styles.overview_totalViewsCount}>
                               <span>
-                                {console.log(
-                                  'formatViewsCount(campaign)',
-                                  formatViewsCount(campaign)
-                                )}
                                 {formatViewsCount(campaign) === '0' ? '' : '+'}
                               </span>
                               <p
@@ -532,12 +527,17 @@ const Overview = () => {
 
   return (
     <div className={styles.overview_container}>
-      {isLoading && <Loader />}
-      {renderOverViewHeader()}
-      <div className={styles.overview_subContainer}>
-        {renderCampaignsOverViewList()}
-        {renderTopCampaignsListAndGraph()}
-      </div>
+      {isLoading ? (
+        <FallbacUi />
+      ) : (
+        <>
+          {renderOverViewHeader()}
+          <div className={styles.overview_subContainer}>
+            {renderCampaignsOverViewList()}
+            {renderTopCampaignsListAndGraph()}
+          </div>
+        </>
+      )}
     </div>
   );
 };

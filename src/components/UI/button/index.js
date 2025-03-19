@@ -15,7 +15,7 @@ const Button = (props) => {
     classname,
     icon,
     iconAltText,
-    startIconStyle,
+    buttonIconStyle,
   } = props;
   return (
     <button
@@ -41,7 +41,7 @@ const Button = (props) => {
           altText={iconAltText}
           customImageContainerStyle={classNames(
             styles.button_icon,
-            startIconStyle
+            buttonIconStyle
           )}
           customImageStyle={styles.button_iconFit}
         />
@@ -62,7 +62,7 @@ Button.propTypes = {
   iconAltText: PropTypes.string,
   iconStyle: PropTypes.string,
   classname: PropTypes.string,
-  startIconStyle: PropTypes.string,
+  buttonIconStyle: PropTypes.string,
 };
 
 export { Button };
