@@ -51,7 +51,6 @@ const AuthProvider = ({ children }) => {
         const tokenData = await getDataFromToken(token);
         try {
           let userResponse = await getUserDetailsApi(tokenData?.id);
-          console.log('rees', userResponse.data.data);
           setUserData(userResponse.data.data);
           setIsLoggedIn(true);
         } catch (error) {

@@ -222,3 +222,84 @@
   text-align: center;
   padding: 8px;
 }
+/* filter */
+.viewCampaign_daysDropDown {
+  width: fit-content;
+  position: relative;
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  padding: 8px 10px 8px 12px;
+  border-radius: 10px;
+  border: 2px solid var(--platinum);
+  height: fit-content;
+  cursor: pointer;
+  align-self: flex-end;
+}
+.viewCampaign_timeOptionsItems {
+  width: 150px;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--white);
+  border: 2px solid rgba(217, 217, 217, 1);
+  border-radius: 10px;
+}
+
+.viewCampaign_timeOption {
+  padding: 10px;
+  border-bottom: 1px solid var(--ash);
+  cursor: pointer;
+}
+
+.viewCampaign_timeOption:hover {
+  padding: 10px;
+  background-color: rgba(217, 217, 217, 1);
+  cursor: pointer;
+}
+
+.viewCampaign_popOver {
+  position: absolute;
+}
+.viewCampaign_selectOption {
+  font-family: 'HelveticaNeuelight';
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 22px;
+  text-align: left;
+  color: var(--charcoal);
+}
+
+.viewCampaign_downChevronGrayIcon,
+.viewCampaign_downChevronTransformedIcon {
+  width: 12px;
+  height: 12px;
+  transition: 0.3s;
+}
+
+.viewCampaign_downChevronTransformedIcon {
+  transform: rotate(180deg);
+}
+.viewCampaign_downChevronGrayIconFit {
+  object-fit: contain;
+}
+
+.viewCampaign_timeOptionsItems {
+  width: 150px;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--white);
+  border: 2px solid rgba(217, 217, 217, 1);
+  border-radius: 10px;
+}
+
+.viewCampaign_timeOption {
+  padding: 10px;
+  border-bottom: 1px solid var(--ash);
+  cursor: pointer;
+}
+
+.viewCampaign_timeOption:hover {
+  padding: 10px;
+  background-color: rgba(217, 217, 217, 1);
+  cursor: pointer;
+}

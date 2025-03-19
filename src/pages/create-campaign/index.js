@@ -95,8 +95,6 @@ const CreateCampaign = () => {
     },
   ]);
 
-  console.log('user', userData);
-
   // BUDGET RANGE DATA
   const budgetData = {
     1500: { videos: [21, 33], views: [165000, 210000] },
@@ -665,10 +663,10 @@ const CreateCampaign = () => {
         }
         budget={budget && `${budget} USD`}
         estimatedCpm={`${
-          '$' + userData?.cpm_price || 'NA'
+          userData?.cpm_price ? '$' + userData?.cpm_price : 'NA'
         } (cost per 1000  views)`}
         estimatedCpv={`${
-          '$' + userData?.price_per_video || 'NA'
+          userData?.price_per_video ? '$' + userData?.price_per_video : 'NA'
         } (cost per video)`}
         onPressBtn={() => {
           handleLaunchCampaign();

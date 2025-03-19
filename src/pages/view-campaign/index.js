@@ -3,6 +3,7 @@ import { Image } from 'components/UI/image';
 import {
   defaultAudioPreviewIcon,
   downChevronBlackIcon,
+  downChevronGrayIcon,
 } from 'resources/images';
 import ReelCard from 'components/reel';
 import { BudgetIndicator } from 'components/budgetindicator';
@@ -17,6 +18,7 @@ import { getCompaignDetailsApi } from 'networking/apis/compaign';
 import StatisticCard from 'components/UI/statisicks-card';
 import ResultsCard from 'components/UI/results-card';
 import FallbacUi from 'components/fallback-ui';
+import PopOver from 'components/UI/popover';
 import styles from './styles.module.css';
 
 const ViewCampaign = () => {
@@ -38,6 +40,8 @@ const ViewCampaign = () => {
   const [selectedReel, setSelectedReel] = useState(null);
   const [campaignDetails, setCampaignDetails] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
+  const [pickerRef, setPickerRef] = useState();
+  const [pickerOpen, setPickerOpen] = useState(false);
   const [totalStats, setTotalStats] = useState({
     views: 0,
     likes: 0,
@@ -54,6 +58,20 @@ const ViewCampaign = () => {
     copyLink: false,
     copySparkAdCode: false,
   });
+
+  const [selectedFilter, setSelectedFilter] = useState({
+    label: 'All',
+    value: null,
+  });
+
+  // CAMPAIGN OPTIONS DATA
+  const Filters = [
+    { label: '1 Day', value: 1 },
+    { label: '7 Days', value: 7 },
+    { label: '90 Days', value: 90 },
+    { label: '1 Year', value: 365 },
+    { label: 'All', value: null },
+  ];
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -76,53 +94,64 @@ const ViewCampaign = () => {
         }, null);
 
         if (latestStats?.stats) {
-          acc.views += latestStats.stats.view_count || 0;
-          acc.likes += latestStats.stats.like_count || 0;
-          acc.shares += latestStats.stats.share_count || 0;
-          acc.comments += latestStats.stats.comment_count || 0;
+          acc.view_count += latestStats.stats.view_count || 0;
+          acc.like_count += latestStats.stats.like_count || 0;
+          acc.share_count += latestStats.stats.share_count || 0;
+          acc.comment_count += latestStats.stats.comment_count || 0;
         }
 
         return acc;
       },
-      { views: 0, likes: 0, shares: 0, comments: 0 }
+      { view_count: 0, like_count: 0, share_count: 0, comment_count: 0 }
     );
 
     let increasedViewCount = 0;
     let increasedLikeCount = 0;
     let increasedShareCount = 0;
     let increasedCommentCount = 0;
-    const aggregatedStats2 = campaignDetails.creator_videos.map(
-      (video, index) => {
-        const filterDate = moment().subtract(3, 'days').format('YYYY-MM-DD');
-        let data = video?.video_stats.filter((videoStats) => {
-          return moment(videoStats.stats_date).isSameOrAfter(filterDate);
-        });
 
-        if (data.length === 0) {
-          increasedViewCount += 0;
-          increasedLikeCount += 0;
-          increasedShareCount += 0;
-          increasedCommentCount += 0;
-        }
+    campaignDetails.creator_videos.forEach((video) => {
+      if (!video?.video_stats.length) return;
 
-        increasedViewCount +=
-          video.stats?.view_count - (data[0]?.stats?.view_count || 0);
-        increasedLikeCount +=
-          video.stats?.like_count - (data[0]?.stats?.like_count || 0);
-        increasedShareCount +=
-          video.stats?.share_count - (data[0]?.stats?.share_count || 0);
-        increasedCommentCount +=
-          video.stats?.comment_count - (data[0]?.stats?.comment_count || 0);
+      const filterDate =
+        selectedFilter.value !== null
+          ? moment().subtract(selectedFilter.value, 'days').format('YYYY-MM-DD')
+          : null;
+
+      let filteredData = video.video_stats;
+      if (filterDate) {
+        filteredData = video.video_stats.filter((videoStats) =>
+          moment(videoStats.stats_date).isSameOrAfter(filterDate)
+        );
       }
-    );
-    setStatsIncrease({
-      views: increasedViewCount,
-      shares: increasedShareCount,
-      likes: increasedLikeCount,
-      comments: increasedCommentCount,
+
+      if (filteredData.length === 0) {
+        increasedViewCount += 0;
+        increasedLikeCount += 0;
+        increasedShareCount += 0;
+        increasedCommentCount += 0;
+      } else {
+        increasedViewCount +=
+          video.stats?.view_count - (filteredData[0]?.stats?.view_count || 0);
+        increasedLikeCount +=
+          video.stats?.like_count - (filteredData[0]?.stats?.like_count || 0);
+        increasedShareCount +=
+          video.stats?.share_count - (filteredData[0]?.stats?.share_count || 0);
+        increasedCommentCount +=
+          video.stats?.comment_count -
+          (filteredData[0]?.stats?.comment_count || 0);
+      }
     });
+
+    setStatsIncrease({
+      view_count: increasedViewCount,
+      share_count: increasedShareCount,
+      like_count: increasedLikeCount,
+      comment_count: increasedCommentCount,
+    });
+
     setTotalStats(aggregatedStats);
-  }, [campaignDetails]);
+  }, [campaignDetails, selectedFilter]);
 
   // get campaign details api call
   const getCampaignDetails = async () => {
@@ -163,9 +192,24 @@ const ViewCampaign = () => {
 
   // Function to format counts
   const formatCount = (count) => {
+    if (count === undefined || count === null) return '0';
     if (count >= 1_000_000) return `${Math.floor(count / 100_000) / 10}M`;
     if (count >= 1_000) return `${Math.floor(count / 100) / 10}K`;
     return count.toString();
+  };
+
+  const filterCreatorVideos = (videos) => {
+    if (!videos || videos.length === 0) return formatCount(0);
+
+    const filterDate =
+      selectedFilter.value !== null
+        ? moment().subtract(selectedFilter.value, 'days')
+        : null;
+
+    let ddd = videos.filter((video) =>
+      filterDate ? moment(video.created_at).isSameOrAfter(filterDate) : []
+    );
+    return formatCount(ddd.length);
   };
 
   // RENDER METHODS
@@ -216,6 +260,7 @@ const ViewCampaign = () => {
     return (
       <div className={styles.viewCampaign_statisticsAndGallery}>
         {renderAudio()}
+        {renderFilterSection()}
         {renderStatistics()}
         {renderTopVideosGallery()}
       </div>
@@ -249,25 +294,61 @@ const ViewCampaign = () => {
           title={'Views'}
           totalCount={formatCount(totalStats.views)}
           count={formatCount(statsIncrease.views)}
-          pastLabel={'last 3 days'}
+          pastLabel={
+            selectedFilter.value !== null
+              ? `In the last ${selectedFilter.value} ${
+                  selectedFilter.value === 1 ? 'day' : 'days'
+                }`
+              : 'In the all time'
+          }
         />
         <StatisticCard
           title={'Likes'}
           totalCount={formatCount(totalStats.likes)}
           count={formatCount(statsIncrease.likes)}
-          pastLabel={'last 3 days'}
+          pastLabel={
+            selectedFilter.value !== null
+              ? `In the last ${selectedFilter.value} ${
+                  selectedFilter.value === 1 ? 'day' : 'days'
+                }`
+              : 'In the all time'
+          }
         />
         <StatisticCard
           title={'Shares'}
           totalCount={formatCount(totalStats.shares)}
           count={formatCount(statsIncrease.shares)}
-          pastLabel={'last 3 days'}
+          pastLabel={
+            selectedFilter.value !== null
+              ? `In the last ${selectedFilter.value} ${
+                  selectedFilter.value === 1 ? 'day' : 'days'
+                }`
+              : 'In the all time'
+          }
         />
         <StatisticCard
           title={'Comments'}
           totalCount={formatCount(totalStats.comments)}
           count={formatCount(statsIncrease.comments)}
-          pastLabel={'last 3 days'}
+          pastLabel={
+            selectedFilter.value !== null
+              ? `In the last ${selectedFilter.value} ${
+                  selectedFilter.value === 1 ? 'day' : 'days'
+                }`
+              : 'In the all time'
+          }
+        />
+        <StatisticCard
+          title={'Total Videos'}
+          totalCount={formatCount(campaignDetails?.creator_videos.length)}
+          count={filterCreatorVideos(campaignDetails?.creator_videos) || 0}
+          pastLabel={
+            selectedFilter.value !== null
+              ? `In the last ${selectedFilter.value} ${
+                  selectedFilter.value === 1 ? 'day' : 'days'
+                }`
+              : 'In the all time'
+          }
         />
       </div>
     );
@@ -346,6 +427,54 @@ const ViewCampaign = () => {
             Video Link Successfully Copied!
           </div>
         )}
+      </div>
+    );
+  };
+
+  const renderFilterSection = () => {
+    return (
+      <div
+        className={styles.viewCampaign_daysDropDown}
+        onClick={() => setPickerOpen(!pickerOpen)}
+        ref={setPickerRef}
+      >
+        <p className={styles.viewCampaign_selectOption}>
+          {selectedFilter.label}
+        </p>
+        <Image
+          image={downChevronGrayIcon}
+          altText="downChevronGrayIcon"
+          customImageContainerStyle={
+            pickerOpen
+              ? styles.viewCampaign_downChevronTransformedIcon
+              : styles.viewCampaign_downChevronGrayIcon
+          }
+          customImageStyle={styles.viewCampaign_downChevronGrayIconFit}
+        />
+
+        <PopOver
+          reference={pickerRef}
+          show={pickerOpen}
+          onClose={() => setPickerOpen(false)}
+          containerStyle={styles.viewCampaign_popOver}
+        >
+          <div className={styles.viewCampaign_timeOptionsItems}>
+            {Filters?.map((option, index) => (
+              <div
+                key={index}
+                className={styles.viewCampaign_timeOption}
+                onClick={() => {
+                  setPickerOpen(false);
+                  setSelectedFilter(option);
+                }}
+              >
+                <p className={styles.viewCampaign_selectOption}>
+                  {option.label}
+                </p>
+              </div>
+            ))}
+          </div>
+        </PopOver>
       </div>
     );
   };

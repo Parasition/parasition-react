@@ -11,12 +11,17 @@ const StatisticCard = ({ title, totalCount, count, pastLabel }) => {
       <h5 className={styles.viewCampaign_statisticTitle}>{title}</h5>
       <div className={styles.viewCampaign_countAndIndicator}>
         <h6 className={styles.viewCampaign_statisticSubTitle}>
-          {totalCount || '-'}
+          {totalCount > 0 && totalCount < 10
+            ? `0${totalCount}`
+            : totalCount || '-'}
         </h6>
 
         <div className={styles.viewCampaign_viewsIndicatorAndPastDays}>
           <div className={styles.viewCampaign_Indicator}>
-            <label className={styles.viewCampaign_count}>{count}</label>
+            <label className={styles.viewCampaign_count}>
+              {' '}
+              {count > 0 && count < 10 ? `0${count}` : count || 0}
+            </label>
             <Image
               image={upArrowGreenIcon}
               customImageContainerStyle={styles.viewCampaign_upArrowIcon}
