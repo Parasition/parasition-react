@@ -6,6 +6,7 @@ import { Button } from 'components/UI/button';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { useAuthContext } from 'hooks/useauthcontext';
 import styles from './styles.module.css';
+import Avatar from 'components/UI/avatar';
 
 const Header = () => {
   // CONSTANTS
@@ -55,11 +56,10 @@ const Header = () => {
   const renderUserSection = () => {
     return (
       <div className={styles.header_userDetailsWrapper}>
-        <Image
-          image={userData?.company_logo || warnerSwedenIcon}
-          altText="logo"
-          customImageContainerStyle={styles.header_userLogoWrapper}
-          customImageStyle={styles.header_userlogo}
+        <Avatar
+          src={userData?.company_logo}
+          label={userData?.name}
+          alt={userData?.name}
         />
         <p className={styles.header_userTitle}>{userData?.name}</p>
       </div>

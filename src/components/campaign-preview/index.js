@@ -77,7 +77,7 @@ const CampaignPreview = (props) => {
           <p className={styles.campaignPreview_budgetListItem}>
             {budgetLabel}: &nbsp;
             <span className={styles.campaignPreview_budgetListItemDesc}>
-              ${budget}
+              {budget ? '$' + budget : 'NA'}
             </span>
           </p>
         </div>

@@ -92,10 +92,12 @@ const AuthProvider = ({ children }) => {
       try {
         const response = await loginApi(loginData);
         const { data, token } = response.data;
+        console.log('3456789,', data);
         setAxiosSession(token);
         localStorage.setItem('accessToken', token);
         localStorage.setItem('loggedIn', true);
         localStorage.setItem('userData', JSON.stringify(data));
+        setUserData(data);
         setIsLoggedIn(true);
         setShowLoader(false);
         navigate(routeNames.createCampaign);

@@ -58,6 +58,11 @@ body {
   --shadow-color08: rgba(30, 30, 32, 0.08);
   --desc-color20: rgba(30, 30, 32, 0.2);
   --steel-blue: rgba(139, 167, 195, 1);
+  --lavender-color: rgba(246, 229, 246, 1);
+  --light-mint-green-color: rgba(233, 246, 229, 1);
+  --peach-color: rgba(255, 241, 230, 1);
+  --pale-lavender-color: rgba(243, 233, 255, 1);
+  --light-primary-color: rgba(229, 236, 246, 1);
 }
 
 /* fonts */
