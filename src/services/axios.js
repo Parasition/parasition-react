@@ -22,12 +22,20 @@ axiosInstance.interceptors.request.use(
 
 axiosInstance.interceptors.response.use(
   (response) => response,
-  (error) =>
+  (error) => {
+    if (error.response?.status === 401) {
+      localStorage.removeItem('accessToken');
+      localStorage.removeItem('loggedIn');
+      localStorage.removeItem('userData');
+      alert('Token expired');
+      window.location.href = '/';
+    }
     Promise.reject(
       (error.response && error.response.data) || {
         message: 'Something went wrong',
       }
-    )
+    );
+  }
 );
 
 export default axiosInstance;

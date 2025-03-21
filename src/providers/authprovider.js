@@ -92,7 +92,6 @@ const AuthProvider = ({ children }) => {
       try {
         const response = await loginApi(loginData);
         const { data, token } = response.data;
-        console.log('3456789,', data);
         setAxiosSession(token);
         localStorage.setItem('accessToken', token);
         localStorage.setItem('loggedIn', true);
